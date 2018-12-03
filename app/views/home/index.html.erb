@@ -1,0 +1,12 @@
+<h1>Première page</h1>
+
+  <% if user_signed_in? %>
+
+  <%= link_to "Se déconnecter", destroy_user_session_path, method: :delete %>
+
+  <% else %>
+
+  <%= link_to "Se connecter", new_user_session_path %>
+  <%= link_to "Se connecter via facebook", user_facebook_omniauth_authorize_path %>
+
+  <% end %>
