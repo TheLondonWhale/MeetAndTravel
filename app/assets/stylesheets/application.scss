@@ -16,7 +16,6 @@
  *= require css/simple-line-icons
  *= require css/style
  *= require css/swiper.min
- *= require css/themify-icons
  *= require_tree .
  *= require_self
  */
@@ -653,7 +652,7 @@
     ============================================================== */
 
  .howit-bg {
-     background: url(../images/howit-bg.png) no-repeat top center;
+     background: url("howit-bg.png") no-repeat top center;
      background-size: contain;
      position: relative;
      top: 100px;
