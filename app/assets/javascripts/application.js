@@ -14,3 +14,12 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+//= require js/bootstrap
+//= require js/bootstrap.min
+//= require js/contact
+//= require js/jquery-3.2.1.min
+//= require js/jquery.magnific-popup
+//= require js/popper.min
+//= require js/script
+//= require js/swiper.min
+//= require js/validate
