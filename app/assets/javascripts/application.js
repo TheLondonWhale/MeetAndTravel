@@ -23,3 +23,6 @@
 //= require js/script
 //= require js/swiper.min
 //= require js/validate
+//= require jquery3
+//= require popper
+//= require bootstrap-sprockets

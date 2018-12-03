@@ -1,0 +1,67 @@
+<!-- Log In & Signup -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="login" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">SE CONNECTER</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="sign-up" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">CREER UN COMPTE</a>
+                </li>
+            </ul>
+            <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="login">
+                    <div class="modal-header">
+                      <h5 class="modal-title"><%= image_tag "logo.png" %></h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span class="fa fa-close"></span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="container">
+                      <%= link_to user_facebook_omniauth_authorize_path, class: "btn btn-lg btn-social btn-facebook" do %>
+                      <i class="fa fa-facebook fa-fw"></i>Se connecter avec Facebook
+                      <% end %>
+                      </div>
+                      <br/>
+                      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+                      <div class="field form-group">
+                        <%= f.text_field :login, autofocus: true, placeholder: "Pseudo ou email", class: "form-control"%>
+                      </div>
+                      <div class="field form-group">
+                        <%= f.password_field :password, autocomplete: "current-password", placeholder: "Mot de passe", class: "form-control" %>
+                      </div>
+                      <% if devise_mapping.rememberable? -%>
+                        <div class="field form-group">
+                          <%= f.check_box :remember_me %>
+                          <%= f.label :remember_me, "Se souvenir de moi" %>
+                        </div>
+                      <% end -%>
+                      <div class="modal-footer justify-content-center">
+                        <div class="actions">
+                          <%= f.submit "Se connecter", class: "btn btn-primary" %>
+                        </div>
+                      <% end %>
+                      </div>
+                      <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+                        <%= link_to "Mot de passe oublié ?", new_password_path(resource_name) %><br />
+                      <% end -%>
+                  </div>
+                </div>
+                <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="sign-up">
+                    <div class="modal-header">
+                        <h5 class="modal-title"><%= image_tag "logo.png"%></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span class="ti-close"></span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <%= render 'devise/registrations/new' %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
