@@ -67,3 +67,5 @@ gem 'omniauth-facebook'
 
 gem 'font-awesome-rails'
 gem 'aws-sdk', '~> 3'
+gem 'bootstrap'
+gem 'jquery-rails'
