@@ -17,16 +17,16 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
   </head>
 
-  <body>
-
-    <% unless user_signed_in? %>
-      <%= render partial: 'devise/sessions/new' %>
-    <% end %>
-
+  <body class="Site">
     <%= render "layouts/navbar" %>
+    <main class="Site-content">
+      <% unless user_signed_in? %>
+        <%= render partial: 'devise/sessions/new' %>
+      <% end %>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= yield %>
+    </main>
     <%= render "layouts/footer" %>
 
   </body>
