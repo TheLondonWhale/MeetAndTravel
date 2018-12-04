@@ -32,13 +32,6 @@ ActiveRecord::Schema.define(version: 2018_12_03_172851) do
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "username", default: "", null: false
-    t.string "firstname"
-    t.string "lastname"
-    t.integer "age"
-    t.text "description"
-    t.string "image"
-    t.float "longitude"
-    t.float "latitude"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -46,15 +39,9 @@ ActiveRecord::Schema.define(version: 2018_12_03_172851) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
-    t.string "facebook_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["age"], name: "index_users_on_age"
-    t.index ["description"], name: "index_users_on_description"
     t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["firstname"], name: "index_users_on_firstname"
-    t.index ["image"], name: "index_users_on_image"
-    t.index ["lastname"], name: "index_users_on_lastname"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true
   end

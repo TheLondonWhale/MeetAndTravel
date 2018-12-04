@@ -423,8 +423,8 @@
  .popular-link-wrap {
      text-align: center;
      p {
-         color: #adadad;
-         font-size: 14px;
+         color: #484848;
+         font-size: 20px;
      }
  }
 
@@ -435,22 +435,25 @@
      ul {
          padding: 0;
          margin: 0;
-         border: 1px solid #dadada;
+         border: 0px solid #484848;
          background: #fff;
          li {
              list-style: none;
-             border-right: 1px solid #dadada;
+             border-right: 0px solid #dadada;
              width: 20%;
              word-wrap: break-word;
-             transition: 0.3s;
+
              @media (max-width: 768px) {
                  width: 100%;
                  border-right: none;
-                 border-bottom: 1px solid #dadada;
+                 border-bottom: 0px solid #dadada;
+
              }
              &:hover {
-                 background: #fbfbfb;
-             }
+                 background: #DCDCDC;
+                 opacity: 0.3;
+                border-radius: 50%;
+                               }
              // @media (max-width: 1200px) {
              // 	width: 100%;
              // 	border-right: none;
