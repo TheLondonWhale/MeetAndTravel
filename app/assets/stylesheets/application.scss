@@ -264,7 +264,7 @@
      text-align: center;
      min-height: 500px;
      @media (max-width: 767px) {
-         min-height: 600px;
+      min-height: 600px;
      }
      h1 {
          color: #484848;
@@ -450,9 +450,9 @@
 
              }
              &:hover {
-                 background: #DCDCDC;
-                 opacity: 0.3;
-                border-radius: 50%;
+                 background-color: rgba(245, 239, 239, .6);
+
+                 border-radius: 90%;
                                }
              // @media (max-width: 1200px) {
              // 	width: 100%;
@@ -855,7 +855,9 @@
              opacity: 0.6;
              transition: 0.3s;
              &:hover {
-                 opacity: 1;
+
+               color: #f29249;
+               opacity: 1;
              }
          }
      }
