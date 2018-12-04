@@ -26,3 +26,9 @@
 //= require js/script
 //= require js/swiper.min
 //= require js/validate
+
+setTimeout(fade_out, 5000);
+
+function fade_out() {
+  $(".hero-title").fadeOut(300);
+}
