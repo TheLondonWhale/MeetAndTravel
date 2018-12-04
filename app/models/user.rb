@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :comments
+  has_many :tips
 
   attr_accessor :login
   # Include default devise modules. Others available are:
