@@ -12,6 +12,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.integer :age
       t.text :description
       t.string :image
+      t.boolean :admin, default: false
       t.float :longitude
       t.float :latitude
 
@@ -50,7 +51,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
     add_index :users, :email,                unique: true
     add_index :users, :reset_password_token, unique: true
     add_index :users, :username,             unique: true
-    
+
 
 
     # add_index :users, :confirmation_token,   unique: true

@@ -4,10 +4,9 @@ class CreateTips < ActiveRecord::Migration[5.2]
       t.string :title
       t.string :metadata
       t.text :description
+      t.string :image
       t.float :latitude
       t.float :longitude
-      t.string :image
-    s
       t.timestamps
     end
   end
