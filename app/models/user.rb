@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_many :tips 
 
   attr_accessor :login
   # Include default devise modules. Others available are:
@@ -21,7 +22,7 @@ class User < ApplicationRecord
 
 
   def self.from_facebook(auth)
-    where(facebook_id: auth_id).first_or_create do |user|
+    where(facebook_id: auth.uid).first_or_create do |user|
       user.email = auth.info.email
       user.username = auth.info.name
       user.password = Devise.friendly_token[0,20]
