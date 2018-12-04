@@ -7,9 +7,7 @@ class CreateTips < ActiveRecord::Migration[5.2]
       t.float :latitude
       t.float :longitude
       t.string :image
-      t.belongs_to :user
-      
-
+    s
       t.timestamps
     end
   end
