@@ -89,14 +89,14 @@
  }
 
  .main-block {
-     padding: 100px 0;
+     padding: 20px 0;
      @media (max-width: 992px) {
          padding: 44px 0;
      }
  }
 
  footer.main-block {
-     padding: 100px 0 60px;
+     padding: 50px 0 20px;
  }
 
  .gray {
@@ -380,6 +380,12 @@
  /* ==============================================================
     HOME 2
     ============================================================== */
+ .hero-title {
+
+   padding: 20px;
+   border-radius: 20px;
+   background-color: rgba(185, 195, 193, .2);
+ }
 
  .home-bg {
      background: url(../images/home-bg1.jpg) no-repeat fixed;
