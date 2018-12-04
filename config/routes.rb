@@ -8,4 +8,8 @@ Rails.application.routes.draw do
     resources :messages
   end
 
+  resources :tips do
+    resources :likes
+  end
+
 end

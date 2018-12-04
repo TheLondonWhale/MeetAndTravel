@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_many :comments
   has_many :tips
+  has_many :likes, dependent: :destroy
 
   attr_accessor :login
   # Include default devise modules. Others available are:
