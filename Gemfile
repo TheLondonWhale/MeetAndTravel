@@ -64,6 +64,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-facebook'
-
+gem 'mailjet'
 gem 'font-awesome-rails'
 gem 'aws-sdk', '~> 3'
