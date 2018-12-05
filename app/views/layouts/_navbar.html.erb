@@ -27,21 +27,20 @@
                     <a class="nav-link" href="" data-toggle="modal" data-target="#exampleModal">SE CONNECTER</a>
                   </li>
                 <% end %>
-
-                                <li class="nav-item">
-                                  <% if user_signed_in? %>
-                                    <%= link_to conversations_path, class: "nav-link" do %>
-                                      <i class="fa fa-envelope-o"></i>&nbsp&nbsp0
-                                    <% end %>
-                                  <% else %>
-                                  <% end %>
-                                </li>
-                            </ul>
-                        </div>
-                    </nav>
-                </div>
+                <li class="nav-item">
+                  <% if user_signed_in? %>
+                  <%= link_to conversations_path, class: "nav-link" do %>
+                    <i class="fa fa-envelope-o"></i>&nbsp&nbsp0
+                  <% end %>
+                  <% else %>
+                  <% end %>
+                </li>
+              </ul>
             </div>
+          </nav>
         </div>
+      </div>
     </div>
+  </div>
 </div>
 <!--//END HEADER -->
