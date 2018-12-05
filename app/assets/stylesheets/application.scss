@@ -18,6 +18,7 @@
  *= require css/swiper.min
  *= require_tree .
  *= require_self
+ *= require css/themify-icons.css
  */
 
 
@@ -2080,7 +2081,7 @@
      margin: 70px 0 54px;
      span {
          font-size: 32px;
-         color: #ff6b6b;
+         color: #ffffff;
      }
      h4 {
          margin: 10px 0;

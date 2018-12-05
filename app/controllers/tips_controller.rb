@@ -1,15 +1,22 @@
 class TipsController < ApplicationController
+before_action :find_tip, only: [:show]
 
-  before_action :find_tip, only: [:show]
+  def new
+
+  end
 
   def index
     @tips = Tip.all
   end
 
-  def show
+  def create
   end
 
-  private
+  def destroy
+  end
+
+  def update
+  end
 
   def find_tip
    @tip = Tip.find(params[:id])
