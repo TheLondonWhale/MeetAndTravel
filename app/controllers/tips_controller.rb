@@ -1,8 +1,11 @@
 class TipsController < ApplicationController
 before_action :find_tip, only: [:show]
-
   def new
 
+  end
+
+  def show
+  
   end
 
   def index
