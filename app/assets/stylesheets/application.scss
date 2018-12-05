@@ -42,6 +42,16 @@
 @import "font-awesome";
 @import "bootstrap";
 
+ .Site {
+   display: flex;
+   min-height: 100vh;
+   flex-direction: column;
+ }
+
+ .Site-content {
+   flex: 1;
+ }
+
  body {
      font-family: 'Roboto', sans-serif;
  }
@@ -1597,7 +1607,7 @@
 
  .title-block_subpage {
      margin: 0;
-     padding: 90px 0;
+     padding: 0;
      h2 {
          color: #4a4a4a;
      }

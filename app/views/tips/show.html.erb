@@ -1,6 +1,18 @@
 
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
 
+    <%= @tip.description %>
+
+    <%= @tip.creator.username %>
+
+    <p><%= @tip.likes.count %> <%= (@tip.likes.count) == 1 ? 'Like' : 'Likes'%></p>
+
+    <% pre_like = @tip.likes.find { |like| like.user_id == current_user.id} %>
+      <% if pre_like %>
+        <%= button_to 'Unlike', tip_like_path(@tip, pre_like), method: :delete %>
+      <% else %>
+        <%= button_to 'Like', tip_likes_path(@tip), method: :post %>
+      <% end %>
 
     <!--============================= BOOKING =============================-->
 

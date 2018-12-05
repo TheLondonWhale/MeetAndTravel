@@ -12,27 +12,19 @@
                         <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
                             <ul class="navbar-nav">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="listing.html">Explore</a>
+                                  <%= link_to 'ACCUEIL', root_path, class: "nav-link" %>
                                 </li>
 
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Pages
-                <span class="fa fa-angle-down"></span>
-              </a>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="index-two.html">Home Style Two</a>
-                                        <a class="dropdown-item" href="listing.html">Listing</a>
-                                        <a class="dropdown-item" href="detail.html">Listing Detail</a>
-                                        <a class="dropdown-item" href="add-listing.html">Add new Listing</a>
-                                        <a class="dropdown-item" href="thank-you.html">Thank You</a>
-                                        <a class="dropdown-item" href="contact.html">Contact</a>
-                                        <a class="dropdown-item" href="pricing.html">Pricing</a>
-                                        <a class="dropdown-item" href="404.html">404</a>
-                                    </div>
+                                <li class="nav-item">
+                                  <% if user_signed_in? %>
+                                    <%= link_to conversations_path, class: "nav-link" do %>
+                                      <i class="fa fa-envelope-o"></i>&nbsp&nbsp0
+                                    <% end %>
+                                  <% else %>
+                                  <% end %>
                                 </li>
                                 <li class="nav-item active">
-                                    <a class="nav-link" href="contact.html">Help</a>
+                                    <a class="nav-link" href="contact.html">CONTACT</a>
                                 </li>
                                 <li class="nav-item dropdown">
                                     <a class="nav-link" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -47,7 +39,7 @@
                                 </li>
                                 <li class="nav-item">
                                   <% if user_signed_in? %>
-                                  <%= link_to "Se déconnecter", destroy_user_session_path, method: :delete, class: "nav-link" %>                                  
+                                  <%= link_to "Se déconnecter", destroy_user_session_path, method: :delete, class: "nav-link" %>
                                   <% else %>
                                   <a class="nav-link" href="" data-toggle="modal" data-target="#exampleModal">SE CONNECTER</a>
                                   <% end %>
