@@ -8,6 +8,7 @@ before_action :find_tip, only: [:show]
   def index
     @tip = Tip.all
     @tip = Tip.joins(:categories).search(params[:search])
+    
   end
 
   def create

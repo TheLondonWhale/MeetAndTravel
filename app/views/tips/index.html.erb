@@ -1,6 +1,7 @@
-
-<% @tip.each do |tip| %>
-
-<p><%= tip.likes.count %> <%= (tip.likes.count) == 1 ? 'Like' : 'Likes'%></p>
-
-<% end %>
+<% @tip.each do |tip|%>
+<tr>
+  <td>
+    <%= @tip.title %>
+  </td>
+</tr>
+<%end%>

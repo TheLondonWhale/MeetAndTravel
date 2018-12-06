@@ -10,7 +10,7 @@ class Tip < ApplicationRecord
 
   def self.search(search)
     if search
-      self.where("(tip.category_id) LIKE :search", search: "%#{search}%")
+      self.where("(Category.find(#{search}).tips) LIKE :search", search: "%#{search}%")
     else
       self.all
     end
