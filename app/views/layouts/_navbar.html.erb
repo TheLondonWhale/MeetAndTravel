@@ -9,25 +9,31 @@
             <%= image_tag "logo.png" %>
             <% end %>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="ti-menu"></span>
+              <span class="fa fa-navicon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
               <ul class="navbar-nav">
-                <li><a href="add-listing.html" class="btn btn-outline-danger top-btn"><span class="fa fa-plus"></span> Ajouter un bon plan</a></li>
+                <li class="nav-link"><a href="add-listing.html" class="btn btn-outline-danger top-btn"><span class="fa fa-plus"></span> Ajouter un bon plan</a></li>
                 <% if user_signed_in? %>
                   <li class="nav-item dropdown">
-                    <a class="nav-link" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= current_user.username %>&nbsp;<span class="fa fa-angle-down"></span></a>
+                    <a class="nav-link" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <% if current_user.avatar.attached? %>
+                        <%= image_tag current_user.avatar, class: "avatar-small" %>
+                      <% else %>
+                        <%= image_tag "avatar.jpg", class: "avatar-small" %>
+                      <% end %>
+                      &nbsp;<span class="fa fa-angle-down"></span></a>
                     <div class="dropdown-menu">
                       <%= link_to "Mon profil", edit_user_registration_path, class: "dropdown-item" %>
                       <%= link_to "Se déconnecter", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
                     </div>
                   </li>
                 <% else %>
-                  <li class="nav-item">
+                  <li class="nav-item nav-link">
                     <a class="nav-link" href="" data-toggle="modal" data-target="#exampleModal">SE CONNECTER</a>
                   </li>
                 <% end %>
-                <li class="nav-item">
+                <li class="nav-item nav-link">
                   <% if user_signed_in? %>
                   <%= link_to conversations_path, class: "nav-link" do %>
                     <i class="fa fa-envelope-o"></i>&nbsp&nbsp0

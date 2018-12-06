@@ -1,26 +1,56 @@
-<!--============================= RESERVE A SEAT =============================-->
-<section class="reserve-block">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-              <%= image_tag "Pizzeria.jpg", class: "card-img-top",  width:150, height:250 %>
-                <h5>Tasty Hand-Pulled Noodles</h5>
-                <p><span>$$$</span>$$</p>
-                <p class="reserve-description">Innovative cooking, paired with fine wines in a modern setting.</p>
-            </div>
-            <div class="col-md-6">
-                <div class="reserve-seat-block">
-                      <button class="btn btn-default" type="submit">
-                      <%= @tip.likes.count %> <%= (@tip.likes.count) == 1 ? 'Like' : 'Likes'%>
-                      <% pre_like = @tip.likes.find { |like| like.user_id == current_user.id} %>
-                        <% if pre_like %>
-                          <%= link_to'Unlike', tip_like_path(@tip, pre_like), method: :delete %>
-                        <% else %>
-                          <%= link_to 'Like', tip_likes_path(@tip), method: :post %>
-                        <% end %></button>
-                    </div>
-                    <div class="review-btn">
-                        <a href="#" class="btn btn-outline-danger">WRITE A REVIEW</a>
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
+
+    <%= @tip.title %>
+
+    <%= @tip.description %>
+
+    <%= @tip.creator.username %>
+
+
+    <% @tip.categories.each do |name| %>
+    <%= name.name %>
+    <% end %>
+
+    <p><%= @tip.likes.count %> <%= (@tip.likes.count) == 1 ? 'Like' : 'Likes'%></p>
+
+    <% pre_like = @tip.likes.find { |like| like.user_id == current_user.id} %>
+      <% if pre_like %>
+        <%= button_to 'Unlike', tip_like_path(@tip, pre_like), method: :delete %>
+      <% else %>
+        <%= button_to 'Like', tip_likes_path(@tip), method: :post %>
+      <% end %>
+
+    <!--============================= BOOKING =============================-->
+
+        <!--
+            <!-- Add Pagination -->
+            <div class="swiper-pagination swiper-pagination-white"></div>
+            <!-- Add Arrows -->
+            <div class="swiper-button-next swiper-button-white"></div>
+            <div class="swiper-button-prev swiper-button-white"></div>
+        </div>
+    </div>
+    <!--//END BOOKING -->
+    <!--============================= RESERVE A SEAT =============================-->
+    <section class="reserve-block">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Tasty Hand-Pulled Noodles</h5>
+                    <p><span>$$$</span>$$</p>
+                    <p class="reserve-description">Innovative cooking, paired with fine wines in a modern setting.</p>
+                </div>
+                <div class="col-md-6">
+                    <div class="reserve-seat-block">
+                        <div class="reserve-rating">
+                            <span>9.5</span>
+                        </div>
+                        <div class="review-btn">
+                            <a href="#" class="btn btn-outline-danger">WRITE A REVIEW</a>
+                            <span>34 reviews</span>
+                        </div>
+
                 </div>
             </div>
         </div>
