@@ -1,6 +1,19 @@
 <div class="container">
+  <% @conversations.each do |conversation| %>
+  <% if conversation.sender_id == current_user.id || conversation.recipient_id == current_user.id %>
+   <% if conversation.sender_id == current_user.id %>
+     <% recipient = User.find(conversation.recipient_id) %>
+   <% else %>
+     <% recipient = User.find(conversation.sender_id) %>
+   <% end %>
+  <div class="d-flex justify-content-between">
+  <h3 class="text-center">Messages de <%= recipient.username %></h3>
+  <%= link_to "Revenir à la boîte de réception", conversations_path, class: "btn btn-primary" %>
+  <% end %>
+  <% end %>
+  </div><br>
   <% if @over_ten %>
-  <%= link_to 'Show Previous', '?m=all' %>
+  <%= link_to 'Messages précédents', '?m=all' %><br/><br/>
   <% end %>
   <div class="ui segment">
     <% @messages.each do |message| %>
@@ -26,8 +39,8 @@
    <%= f.text_area :body, class: "form-control", placeholder: "Ecris ta réponse" %>
  </div>
  <%= f.text_field :user_id, value: current_user.id, type: "hidden" %>
- <div class="form-group">
-   <%= f.submit "Envoyer", class: "btn btn-primary" %>
- </div>
-<% end %>
+   <div class="form-group">
+     <%= f.submit "Envoyer", class: "btn btn-primary" %>
+   </div>
+  <% end %>
 </div>

@@ -5,6 +5,7 @@ class MessagesController < ApplicationController
   end
 
   def index
+    @conversations = Conversation.all
     @messages = @conversation.messages
     if @messages.length > 10
       @over_ten = true
@@ -20,6 +21,11 @@ class MessagesController < ApplicationController
       end
     end
     @message = @conversation.messages.new
+  end
+
+  def show
+    @message = Message.find(params[:message_id])
+    @message.read = true
   end
 
   def new
@@ -38,5 +44,5 @@ class MessagesController < ApplicationController
   def message_params
     params.require(:message).permit(:body, :user_id)
   end
-  
+
 end

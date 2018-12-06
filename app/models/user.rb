@@ -13,10 +13,6 @@ class User < ApplicationRecord
                     format: { with: VALID_EMAIL_REGEX }
 
 
-  validates :password, presence: true, length: { minimum: 6 }
-
-  validates :firstname, presence: true
-
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable
 
