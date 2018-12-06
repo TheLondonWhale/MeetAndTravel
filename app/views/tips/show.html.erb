@@ -1,9 +1,16 @@
 
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
 
+    <%= @tip.title %>
+
     <%= @tip.description %>
 
     <%= @tip.creator.username %>
+
+
+    <% @tip.categories.each do |name| %>
+    <%= name.name %>
+    <% end %>
 
     <p><%= @tip.likes.count %> <%= (@tip.likes.count) == 1 ? 'Like' : 'Likes'%></p>
 
