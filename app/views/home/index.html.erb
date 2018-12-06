@@ -13,6 +13,12 @@
 <!--//END MAIN TITLE -->
 <!--============================= POPULAR =============================-->
 <hr>
+<%= form_tag tips_path, :method => 'get' do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+<% end %>
 <div class="popular-link-set ">
     <div class="container">
         <div class="row">

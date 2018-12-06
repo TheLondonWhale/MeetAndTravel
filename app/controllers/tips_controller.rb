@@ -3,7 +3,8 @@ class TipsController < ApplicationController
   before_action :find_tip, only: [:show]
 
   def index
-    @tips = Tip.all
+    @tip = Tip.all
+    @tip = Tip.joins(:categories).search(params[:search])
   end
 
   def show
@@ -12,7 +13,7 @@ class TipsController < ApplicationController
   private
 
   def find_tip
-   @tip = Tip.find(params[:id])
+   @tip  = Tip.find(params[:id])
   end
 
 end
