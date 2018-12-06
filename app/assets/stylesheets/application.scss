@@ -1119,14 +1119,13 @@
  }
 
  .reserve-rating {
-     font-size: 23px;
-     background: #46cd38;
-     padding: 8px 16px;
+     font-size: 10px;
+     background: #ff6b6b;
      color: #fff;
      border-radius: 3px;
-     display: inline-block;
-     vertical-align: top;
- }
+     display: flex;
+     align-items:center;
+  }
 
  .reserve-btn .btn {
      padding: 15px 30px;
@@ -1185,6 +1184,7 @@
 
  .booking-details_wrap {
      padding: 26px 0;
+
  }
 
  .booking-your-review {
@@ -1228,6 +1228,10 @@
      color: #737882;
  }
 
+.reserve-seat-block
+{
+  color: #ff6b6b;
+}
  .add-frieds {
      padding: 6px;
      width: 100%;
@@ -1452,7 +1456,7 @@
          width: 100%;
      }
      label {
-         color: #46cd38;
+         color: #ff6b6b;
          font-size: 14px;
          padding: 0 0 0 50px;
          @media (max-width: 992px) {

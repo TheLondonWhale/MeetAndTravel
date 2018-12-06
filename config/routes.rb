@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
+
   resources :tips
+
   devise_for :users, controllers: {
   omniauth_callbacks: 'users/omniauth_callbacks'
   }
@@ -10,7 +12,10 @@ Rails.application.routes.draw do
   end
 
   resources :tips do
-    resources :likes
+   resources :likes
+  end
+  resources :tips do
+    resources :comments
   end
 
 end
