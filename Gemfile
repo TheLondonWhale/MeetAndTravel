@@ -70,3 +70,4 @@ gem 'aws-sdk-s3', '~> 1', require: false
 gem 'bootstrap'
 gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
 gem 'image_processing', '~> 1.2'
+gem 'pry'

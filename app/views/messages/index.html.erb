@@ -7,7 +7,7 @@
      <% recipient = User.find(conversation.sender_id) %>
    <% end %>
   <div class="d-flex justify-content-between">
-  <h3 class="text-center">Messages de <%= recipient.username %></h3>
+  <h3 class="text-center">Messages avec <%= recipient.username %></h3>
   <%= link_to "Revenir à la boîte de réception", conversations_path, class: "btn btn-primary" %>
   <% end %>
   <% end %>
@@ -36,7 +36,7 @@
   </div>
 <%= form_for [@conversation, @message], html: {class: "ui reply form"} do |f| %>
  <div class="form-group">
-   <%= f.text_area :body, class: "form-control", placeholder: "Ecris ta réponse" %>
+   <%= f.text_area :body, class: "form-control", placeholder: "Ecris ton message ici" %>
  </div>
  <%= f.text_field :user_id, value: current_user.id, type: "hidden" %>
    <div class="form-group">

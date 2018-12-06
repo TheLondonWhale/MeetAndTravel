@@ -1,11 +1,4 @@
 
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
-
-    <%= @tip.title %>
-
-    <%= @tip.description %>
-
-    <%= @tip.creator.username %>
 
 
     <% @tip.categories.each do |name| %>
@@ -23,102 +16,111 @@
 
     <!--============================= BOOKING =============================-->
 
-        <!--
-            <!-- Add Pagination -->
-            <div class="swiper-pagination swiper-pagination-white"></div>
-            <!-- Add Arrows -->
-            <div class="swiper-button-next swiper-button-white"></div>
-            <div class="swiper-button-prev swiper-button-white"></div>
-        </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <%= image_tag "feat_slide1.jpg", class: "image_tips" %>
+      </div>
     </div>
+  </div>
+
     <!--//END BOOKING -->
     <!--============================= RESERVE A SEAT =============================-->
     <section class="reserve-block">
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <h5>Tasty Hand-Pulled Noodles</h5>
-                    <p><span>$$$</span>$$</p>
-                    <p class="reserve-description">Innovative cooking, paired with fine wines in a modern setting.</p>
-                </div>
-                <div class="col-md-6">
-                    <div class="reserve-seat-block">
-                        <div class="reserve-rating">
-                            <span>9.5</span>
-                        </div>
-                        <div class="review-btn">
-                            <a href="#" class="btn btn-outline-danger">WRITE A REVIEW</a>
-                            <span>34 reviews</span>
-                        </div>
-
+                  <h5><%= @tip.title %></h5>
                 </div>
             </div>
         </div>
-
-</section>
-<!--//END RESERVE A SEAT -->
+    </section>
+    <!--//END RESERVE A SEAT -->
 <section class="gray-dark booking-details_wrap">
     <div class="container">
         <div class="row">
             <div class="col-md-8 responsive-wrap">
                 <div class="booking-checkbox_wrap">
                     <div class="booking-checkbox">
-                        <p>Tasty Hand-Pulled Noodles is a 1950s style diner located in Madison, Wisconsin. Opened in 1946 by Mickey Weidman, and located just across the street from Camp Randall Stadium, it has become a popular game day tradition amongst
-                            many Badger fans. The diner is well known for its breakfast selections, especially the Scrambler, which is a large mound of potatoes, eggs, cheese, gravy, and a patrons’ choice of other toppings.</p>
-                        <p>Mickies has also been featured on “Todd’s Taste of the Town” during one of ESPN’s college football broadcasts. We are one of the best Chinese restaurants in the New York, New York area. We have been recognized for our outstanding
-                            Chinese & Asian cuisine, excellent Chinese menu, and great restaurant specials. We are one of the best Chinese restaurants in the New York, New York area. We have been recognized for our outstanding Chinese & Asian cuisine,
-                            excellent Chinese menu, and great restaurant specials.</p>
+                        <p><%= @tip.description %></p>
                         <hr>
                     </div>
                 <div class="booking-checkbox_wrap mt-4">
-                    <h4>34 Reviews</h4>
+                    <% if @tip.comments.count == 0 || @tip.comments.count == 1 %>
+                      <h4><%= @tip.comments.count %> commentaire</h4>
+                    <% else %>
+                      <h4><%= @tip.comments.count %> commentaires</h4>
+                    <% end %>
                     <hr>
+                    <% @tip.comments.each do |comment| %>
                     <div class="customer-review_wrap">
                         <div class="customer-img">
-                            <img src="images/customer-img1.jpg" class="img-fluid" alt="#">
-                            <p>  <p><%= @tip.creator.username %></p>
-                            <span>35 Reviews</span>
+                          <% commentor = User.find(comment.user_id) %>
+                            <% if commentor.avatar.attached? %>
+                              <%= image_tag commentor.avatar, class: "avatar" %>
+                            <% else %>
+                              <%= image_tag "avatar.jpg", class: "avatar" %>
+                            <% end %>
+                            <p><%= commentor.username %></p>
+                            <% if commentor.comments.count == 0 || commentor.comments.count == 1 %>
+                              <span><%= commentor.comments.count %> commentaire</span>
+                            <% else %>
+                              <span><%= commentor.comments.count %> commentaires</span>
+                            <% end %>
                         </div>
                         <div class="customer-content-wrap">
-                            <div class="customer-content">
-                                <div class="customer-review">
-                                  <h5>Best noodles in the Newyork city</h5>
-                                  <% @tip.comments.each do |comment| %>
-                                 <% user = User.find(comment.user_id)%>
-                                  <%= user.username %>
-                                    <div class="round-icon-blank"></div>
-                                </div>
-                                <div class="customer-rating">8.0</div>
-                            </div>
+                          <div class="customer-review">
                             <p class="customer-text">
                               <%= comment.content %>
-                             <% end %> </p>
-                            <span>28 people marked this review as helpful</span>
-                            <a href="#"><span class="icon-like"></span>Helpful</a>
+                            </p>
+                          </div>
                         </div>
                     </div>
                     <hr>
+                    <% end %>
+                    <% if @tip.comments.count == 0 %>
+                    <p class="customer-text"><h5>Pas encore de commentaires</h5>Sois le premier à en écrire un !</p>
+                    <% end %>
+                    <h5>Ajouter un commentaire</h5>
+                    <h6><% if current_user.avatar.attached? %>
+                      <%= image_tag current_user.avatar, class: "avatar" %>
+                    <% else %>
+                      <%= image_tag "avatar.jpg", class: "avatar" %>
+                    <% end %><%= current_user.firstname %></h6>
+                    <div class="form-group">
+
+                    <%= form_for([ @tip, @tip.comments.build ]) do |f| %>
+                    <p>
+                      <%= f.text_area :content, class:"form-control" %>
+                    </p>
+                    <p>
+                      <%= f.submit "Publier mon commentaire", class:"btn btn-primary" %>
+                    </p>
+                    <% end %>
+
+                    </div>
                   </div>
                 </div>
             </div>
             <div class="col-md-4 responsive-wrap">
                 <div class="contact-info">
-                    <img src="images/map.jpg" class="img-fluid" alt="#">
+                    <%= image_tag "map.jpg", class: "img-fluid" %>
                     <div class="address">
-                        <span class="icon-location-pin"></span>
+                        <span class="fa fa-location-arrow"></span>
                         <p> Doyers St<br> New York, NY 10013<br> b/t Division St & St James Pl <br> Chinatown, Civic Center</p>
                     </div>
                 </div>
                 <div class="follow">
                     <div class="follow-img">
-                        <img src="images/follow-img.jpg" class="img-fluid" alt="#">
-                        <h6>Christine Evans</h6>
-                        <span>New York</span>
-                        <div id="map">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2530.4779973110158!2d3.0616651156123296!3d50.63681327950147!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c2d5887c0136b9%3A0x836a6d7bd2c18c65!2sPlace+Charles+de+Gaulle%2C+59800+Lille!5e0!3m2!1sfr!2sfr!4v1543321700204" width="300" height="300" frameborder="0" style="border:0" allowfullscreen>
-                            </iframe>
-                     <ul>
-                     </ul>
+                      <% writter = User.find(@tip.creator_id) %>
+                      <% if writter.avatar.attached? %>
+                        <%= image_tag writter.avatar, class: "avatar" %>
+                      <% else %>
+                        <%= image_tag "avatar.jpg", class: "avatar" %>
+                      <% end %>
+                      <h6><%= writter.firstname %></h6>
+                      <%= link_to 'Envoyer un message privé', conversations_path(sender_id: current_user.id, recipient_id: writter.id), method: 'post' %>
+                    </div>
                 </div>
             </div>
         </div>

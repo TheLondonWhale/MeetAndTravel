@@ -5,7 +5,6 @@ before_action :find_tip, only: [:show]
   end
 
   def show
-    @user = User.find(params[:id])
   end
 
   def index

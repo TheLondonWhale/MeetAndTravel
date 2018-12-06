@@ -1,0 +1,10 @@
+<div class="form-group">
+<%= form_for([ @tip, Comment.new ]) do |f| %>
+<p>
+  <%= f.text_area :content, class:"form-control" %>
+</p>
+<p>
+  <%= f.submit "Publier mon commentaire", class:"btn btn-primary" %>
+</p>
+<% end %>
+</div>
