@@ -11,11 +11,11 @@
             <div>
               <% if @user.avatar.attached? %>
               <div class="image-upload">
-              <label for="file-input">
-                <span class="fa fa-camera"></span>
-              </label>
-              <%= f.file_field :avatar, :id => "file-input" %>
-              <%= image_tag @user.avatar, class: "avatar" %><br/>
+                <label for="file-input">
+                  <span class="fa fa-camera"></span>
+                </label>
+                <%= f.file_field :avatar, :id => "file-input" %>
+                <%= image_tag @user.avatar, class: "avatar" %><br/>
               </div>
               <% else %>
               <div class="image-upload">

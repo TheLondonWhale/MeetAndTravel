@@ -17,7 +17,7 @@
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div class="listing-wrap">
-                        <form action="#">
+                        <%= form_for @tip do |f| %>
                             <!-- General Information -->
                             <div class="listing-title">
                                 <span class="ti-files"></span>
@@ -27,14 +27,14 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Nom</label>
-                                        <input type="text" class="form-control add-listing_form">
+                                        <%= f.label :title, "Nom du bon plan" %>
+                                        <%= f.text_field :title, class: "form-control add-listing_form" %>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Site/Facebook</label>
-                                        <input type="text" class="form-control add-listing_form">
+                                        <%= f.label :site, "Site/Facebook" %>
+                                        <%= f.text_field :site, class: "form-control add-listing_form" %>
                                     </div>
                                 </div>
                             </div>
@@ -42,23 +42,22 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Catégories</label>
-                                        <select class="form-control add-listing_form">
-
-                                        </select>
+                                        <%= f.label :category, "Catégories" %>
+                                        <%= f.select :category_ids, Category.all.collect {|x| [x.name, x.id]}, {}, :multiple => true, as: :check_boxes %>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Téléphone</label>
-                                        <input type="text" class="form-control add-listing_form">
+                                        <%= f.label :description, "Description du bon plan" %>
+                                        <%= f.text_area :description, class: "form-control add-listing_form" %>
+
                                     </div>
                                 </div>
                             </div>
                             <!--//End General Information -->
                             <!-- Add Location -->
                             <div class="listing-title">
-                                <span class="ti-location-pin"></span>
+                                <span class="fa fa-location-arrow"></span>
                                 <h4>Ajouter une adresse</h4>
 
                             </div>
@@ -72,11 +71,10 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                  <div class="form-group">
-                                      <label>Adresse (suite)</label>
-                                      <input type="text" class="form-control add-listing_form">
-                                  </div>
-
+                                    <div class="form-group">
+                                        <label>Code Postal</label>
+                                        <input type="text" class="form-control add-listing_form">
+                                    </div>
                                 </div>
                             </div>
 
@@ -84,34 +82,16 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Ville</label>
-                                        <select class="form-control add-listing_form">
-
-                                        </select>
+                                        <input type="text" class="form-control add-listing_form">
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Région</label>
-                                        <select class="form-control add-listing_form">
-
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Pays</label>
                                         <input type="text" class="form-control add-listing_form">
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Code Postal</label>
-                                        <input type="text" class="form-control add-listing_form">
-                                    </div>
-                                </div>
+
                             </div>
                             <!--//End Add Location -->
                             <!-- Add Gallery -->
@@ -122,13 +102,10 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="custom-file">
-                                        <div class="add-gallery-text">
-                                            <i class="ti-gallery"></i>
-                                            <span>Importer des photos</span>
-                                        </div>
-                                        <input type="file" class="custom-file-input" id="customFile">
+                                      <%= f.file_field :pictures, :multiple => true, class: "form-control-file" %>
                                     </div>
                                 </div>
+
                             </div>
                             <!--//End Add Gallery -->
 
@@ -140,14 +117,12 @@
 
                             <div class="row">
                                 <div class="col-md-12">
-                                    <button type="button" class="btn btn-primary btn-sm">Ajouter</button>
-
-                                    </div>
+                                    <%= f.submit "Créer un bon plan", class: "btn btn-primary" %>
                                 </div>
                             </div>
                             <!--//End Opening Hours -->
+                            <% end %>
 
-                          </form>
                     </div>
                 </div>
               </div>

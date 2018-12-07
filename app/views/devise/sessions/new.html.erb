@@ -35,44 +35,7 @@
         <% end -%>
         Pas encore inscrit ? <%= link_to "Créer un compte", new_user_registration_path %>
       </div>
-		  <div class="col-md-8 banner-sec">
-        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-          <ol class="carousel-indicators">
-            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-          </ol>
-          <div class="carousel-inner" role="listbox">
-            <div class="carousel-item active">
-              <%= image_tag "carrousel-1.jpg", class: "d-block img-fluid", alt: "First slide"%>
-              <div class="carousel-caption d-none d-md-block">
-                <div class="banner-text">
-                  <h2>Découvre</h2>
-                  <p>les spots parfaits tout autour de toi !</p>
-                </div>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <%= image_tag "carrousel-2.jpg", class: "d-block img-fluid", alt: "First slide"%>
-              <div class="carousel-caption d-none d-md-block">
-                <div class="banner-text">
-                  <h2>Rencontre</h2>
-                  <p>des milliers de voyageurs autour de toi !</p>
-                </div>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <%= image_tag "carrousel-3.jpg", class: "d-block img-fluid", alt: "First slide"%>
-              <div class="carousel-caption d-none d-md-block">
-                <div class="banner-text">
-                  <h2>Profite</h2>
-                  <p>des bons plans de la communauté partout où tu es !</p>
-                </div>
-              </div>
-            </div>
-          </div>
-		    </div>
-	    </div>
+		  <%= render 'layouts/carrousel' %>
     </div>
   </div>
 </section>
