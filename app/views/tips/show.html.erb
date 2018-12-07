@@ -1,56 +1,49 @@
-
-
-
-    <% @tip.categories.each do |name| %>
-    <%= name.name %>
-    <% end %>
-
-    <p><%= @tip.likes.count %> <%= (@tip.likes.count) == 1 ? 'Like' : 'Likes'%></p>
-
-    <% pre_like = @tip.likes.find { |like| like.user_id == current_user.id} %>
-      <% if pre_like %>
-        <%= button_to 'Unlike', tip_like_path(@tip, pre_like), method: :delete %>
-      <% else %>
-        <%= button_to 'Like', tip_likes_path(@tip), method: :post %>
-      <% end %>
-
     <!--============================= BOOKING =============================-->
-
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6">
-        <%= image_tag "feat_slide1.jpg", class: "image_tips" %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 responsive-wrap">
+      <h5><%= @tip.title %></h5>
+      <hr>
+      <p class="booking-checkbox"><%= @tip.description %></p>
+      <hr>
+      <div class="row d-flex justify-content-between">
+        <div class="col-md-3 responsive-wrap">
+          <% @tip.categories.each do |name| %>
+          <%= name.name %>
+          <% end %>
+        </div>
+        <div class="col-md-3 responsive-wrap">
+          <% pre_like = @tip.likes.find { |like| like.user_id == current_user.id} %>
+          <% if pre_like %>
+            <%= link_to tip_like_path(@tip, pre_like), method: :delete, class: "delete" do %>
+              <i id="unlike" class="fa fa-heart"></i>
+            <%end%>
+          <% else %>
+            <%= link_to tip_likes_path(@tip), method: :post do %>
+              <i id="like" class="fa fa-heart-o"></i>
+            <% end %>
+          <% end %>
+          <%= @tip.likes.count %> <%= (@tip.likes.count) == 1 ? 'like' : 'likes'%>
+        </div>
       </div>
     </div>
+    <div class="col-md-6 responsive-wrap">
+      <%= image_tag "feat_slide1.jpg", class: "image_tips img-fluid" %>
+    </div>
   </div>
+</div>
 
     <!--//END BOOKING -->
     <!--============================= RESERVE A SEAT =============================-->
-    <section class="reserve-block">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                  <h5><%= @tip.title %></h5>
-                </div>
-            </div>
-        </div>
-    </section>
+
     <!--//END RESERVE A SEAT -->
 <section class="gray-dark booking-details_wrap">
     <div class="container">
         <div class="row">
             <div class="col-md-8 responsive-wrap">
                 <div class="booking-checkbox_wrap">
-                    <div class="booking-checkbox">
-                        <p><%= @tip.description %></p>
-                        <hr>
-                    </div>
-                <div class="booking-checkbox_wrap mt-4">
-                    <% if @tip.comments.count == 0 || @tip.comments.count == 1 %>
-                      <h4><%= @tip.comments.count %> commentaire</h4>
-                    <% else %>
-                      <h4><%= @tip.comments.count %> commentaires</h4>
-                    <% end %>
+                  <div class="booking-checkbox_wrap mt-4">
+                    <h4><%= @tip.comments.count %> <%= (@tip.comments.count) == 1 ? 'commentaire' : 'commentaires' %>
                     <hr>
                     <% @tip.comments.each do |comment| %>
                     <div class="customer-review_wrap">
@@ -62,11 +55,7 @@
                               <%= image_tag "avatar.jpg", class: "avatar" %>
                             <% end %>
                             <p><%= commentor.username %></p>
-                            <% if commentor.comments.count == 0 || commentor.comments.count == 1 %>
-                              <span><%= commentor.comments.count %> commentaire</span>
-                            <% else %>
-                              <span><%= commentor.comments.count %> commentaires</span>
-                            <% end %>
+                            <span><%= commentor.comments.count %> <%= (commentor.comments.count) == 1 ? 'commentaire' : 'commentaires' %>
                         </div>
                         <div class="customer-content-wrap">
                           <div class="customer-review">
