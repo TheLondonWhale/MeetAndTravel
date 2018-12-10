@@ -53,7 +53,7 @@
                 <li class="nav-item nav-link">
                   <% if user_signed_in? %>
                   <%= link_to conversations_path, class: "nav-link" do %>
-                    <i class="fa fa-envelope-o"></i>&nbsp&nbsp0
+                    <i class="fa fa-envelope-o"></i>&nbsp&nbsp<%= @n %>
                   <% end %>
                   <% else %>
                   <% end %>
