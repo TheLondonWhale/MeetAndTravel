@@ -15,15 +15,15 @@
         <div class="col-md-3 responsive-wrap">
           <% pre_like = @tip.likes.find { |like| like.user_id == current_user.id} %>
           <% if pre_like %>
-            <%= link_to tip_like_path(@tip, pre_like), method: :delete, class: "delete" do %>
+            <%= link_to tip_like_path(@tip, pre_like), method: :delete, class: "delete_like" do %>
               <i id="unlike" class="fa fa-heart"></i>
-            <%end%>
+            <% end %>
           <% else %>
-            <%= link_to tip_likes_path(@tip), method: :post do %>
+            <%= link_to tip_likes_path(@tip), method: :post, class: "create_like" do %>
               <i id="like" class="fa fa-heart-o"></i>
             <% end %>
           <% end %>
-          <%= @tip.likes.count %> <%= (@tip.likes.count) == 1 || 0 ? 'like' : 'likes'%>
+          <%= @tip.likes.count %> <%= (@tip.likes.count) == 1 || (@tip.likes.count) == 0 ? 'like' : 'likes'%>
         </div>
       </div>
     </div>
