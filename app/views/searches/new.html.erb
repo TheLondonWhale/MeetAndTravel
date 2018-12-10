@@ -1,0 +1,21 @@
+<h1>Custom Search </h1>
+
+<%=form_for @search do |f| %>
+<div class="field">
+  <%= f.label :keywords%>
+  <%=f.text_field :keywords%>
+</div>
+
+<div class="field">
+  <%= f.label :category_id %>
+  <%= f.collection_select :category_id, Category.all, :id, :name %>
+</div>
+
+<div class="actions">
+  <%= f.submit %>
+</div>
+<%end%>
+
+<p>
+    <%= link_to 'Back', tips_path %>
+</p>

@@ -14,5 +14,6 @@ Rails.application.routes.draw do
   resources :tips do
     resources :comments
   end
+  resources :searches
 
 end
