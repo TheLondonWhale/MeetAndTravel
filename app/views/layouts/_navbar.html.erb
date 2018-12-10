@@ -11,11 +11,21 @@
               Meet & Travel
               </div>
             <% end %>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="fa fa-navicon"></span>
-            </button>
+            <div class="collapse navbar-collapse justify-content-end">
+              <ul class="navbar-nav d-flex align-items-center">
+                <li class="nav-link form-inline">
+                  <%= form_tag searches_path, :method => 'get' do %>
+                  <%= text_field_tag :search, params[:search], placeholder: "Mots-clés...", class: "form-control" %>
+                    <%= submit_tag "Rechercher un bon plan", class: "btn btn-outline-danger top-btn" %>
+                  <%end%>
+                </li>
+                <li class="nav-link">
+                  <span><%= link_to "Recherche avancée", new_search_path %></span>
+                </li>
+              </ul>
+            </div>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
-              <ul class="navbar-nav">
+              <ul class="navbar-nav d-flex align-items-center">
                 <li class="nav-link"><%= link_to new_tip_path, class: "btn btn-outline-danger top-btn" do %>
                   <span class="fa fa-plus"></span> Ajouter un bon plan
                   <% end %>
