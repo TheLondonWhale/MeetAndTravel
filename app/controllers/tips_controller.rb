@@ -1,4 +1,4 @@
-require 'pry'
+
 class TipsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_tip, only: [:show, :edit, :update, :destroy]
@@ -16,7 +16,6 @@ class TipsController < ApplicationController
   end
 
   def create
-    binding.pry
     @tip = Tip.new(tip_params)
     if params[:tip][:pictures] != nil
       @tip.pictures.attach(params[:tip][:pictures])
