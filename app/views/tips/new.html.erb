@@ -44,6 +44,7 @@
                                     <div class="form-group">
                                         <%= f.label :category, "Catégories" %>
                                           <%= f.collection_check_boxes :category_ids, Category.all, :id, :name %>
+
                                     </div>
                                 </div>
                                 <div class="col-md-6">

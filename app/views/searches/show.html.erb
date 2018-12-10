@@ -7,8 +7,17 @@
 <%else%>
 
   <% @search.each do |c| %>
+
     <div class="div">
-      <h1><%= c.name%></h1>
+      <p><%= c.title%></p>
+      <p><%= c.description%></p>
+      <p><%= c.image%></p>
+<p> AHHAHAHAHAHAHAHHAH</p>
+        <% for i in 0...c.categories.count %>
+      <p><%= c.categories[i].name%></p>
+        <% end %>
+<p> AHHAHAHAHAHAHAHHAH</p>
     </div>
+
   <%end%>
 <%end%>
