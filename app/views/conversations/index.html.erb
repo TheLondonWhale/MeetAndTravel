@@ -1,25 +1,27 @@
 <div class="row justify-content-center">
     <div class="col-md-10">
-        <div class="titile-block title-block_subpage">
-            <h2>Boîte de réception</h2>
+        <div class="login-sec">
+            <h2 class="text-center">Boîte de réception</h2>
         </div>
     </div>
 </div>
 
-<main role="main" class="container bootdey.com">
-  <div class="d-flex align-items-center p-3 my-3 bg-blue rounded box-shadow">
-    <img class="mr-3" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" width="48" height="48">
+<div class="container">
+  <div class="p-3 my-3 bg-blue">
+    <% if current_user.avatar.attached? %>
+      <%= image_tag current_user.avatar, class: "avatar rounded float-left" %>
+    <% else %>
+      <%= image_tag "avatar.jpg", class: "avatar rounded float-left" %>
+    <% end %>
     <div>
-      <h6 class="mb-0 lh-100"><%= current_user.username %></h6>
+      <h6 class="mb-0 lh-100"><%= current_user.firstname %></h6>
       <small>Messages</small>
     </div>
   </div>
 
   <div class="my-3 p-3 bg-white rounded box-shadow">
-    <h6 class="border-bottom border-gray pb-2 mb-0">Messages reçus</h6>
-
+    <h5 class="border-bottom border-gray pb-2 mb-0">Conversations</h5>
       <% @conversations.each do |conversation| %>
-      <% if @messages %>
         <% if conversation.sender_id == current_user.id || conversation.recipient_id == current_user.id %>
          <% if conversation.sender_id == current_user.id %>
            <% recipient = User.find(conversation.recipient_id) %>
@@ -27,15 +29,29 @@
            <% recipient = User.find(conversation.sender_id) %>
          <% end %>
         <div class="media text-muted pt-3">
-          <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" class="mr-2 rounded" width="32" height="32">
-          <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-            <strong class="d-block text-gray-dark"><%= recipient.username %></strong>
-            <%= link_to conversation.messages.last.body, conversation_messages_path(conversation)%>
+          <% if recipient.avatar.attached? %>
+            <%= image_tag recipient.avatar, class: "avatar-small" %>
+          <% else %>
+            <%= image_tag "avatar.jpg", class: "avatar-small" %>
+          <% end %>
+          <p class="media-body pb-3 pl-3 mb-0 lh-125 border-bottom border-gray">
+            <strong class="d-block text-gray-dark"><%= recipient.firstname %></strong>
+            <% if conversation.messages.last.read == false && conversation.messages.last.user_id == current_user.id %>
+                <%= link_to conversation.messages.last.body, conversation_messages_path(conversation) %>
+            <% elsif conversation.messages.last.read == false %>
+              <%= link_to conversation.messages.last.body, conversation_messages_path(conversation), style: "font-weight:bold"%>
+            <% else %>
+              <%= link_to conversation.messages.last.body, conversation_messages_path(conversation) %>
+            <% end %>
+          </p>
+        <div>
+          <%= link_to @conversation, method: :delete, data: { confirm: "La conversation va être définitivement supprimée, es-tu sûr(e) ?" } do %>
+          <span class="fa fa-trash-o pt-3" style="font-size:25px;"></span>
+          <% end %>
+        </div>
+        </div>
+          <% end %>
         <% end %>
-      <% end %>
-    <% end %>
-      </p>
-    </div>
   </div>
   <!-- <div class="ui segment">
    <h3>All Users</h3>
@@ -49,4 +65,4 @@
    <% end %>
    </div>
   </div> -->
-</main>
+</div>

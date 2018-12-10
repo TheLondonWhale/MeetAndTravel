@@ -3,26 +3,16 @@
 <section class="hero-wrap">
     <div class="container">
         <div class="row d-flex justify-content-center">
-            <div class="hero-title">
+            <div class="hero-title login-sec">
                 <h1>Meet & Travel</h1>
                 <h3>Rencontrez d'autres voyageurs </h3>
             </div>
          </div>
-            </div>
+    </div>
 </section>
 <!--//END MAIN TITLE -->
 <!--============================= POPULAR =============================-->
 <hr>
-<h1>Recherche d'un tip</h1>
-<%= form_tag tips_path, :method => 'get' do %>
-<%= text_field_tag :search, params[:search] %>
-<%= submit_tag "Search" %>
-<%end%>
-
-<%= link_to "Advanced Search", new_search_path %>
-
-
-<p>
 
 <div class="popular-link-set ">
     <div class="container">

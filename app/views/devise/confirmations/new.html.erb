@@ -1,16 +1,23 @@
-<h2>Resend confirmation instructions</h2>
+<section class="login-block">
+  <div class="container">
+    <div class="row d-flex justify-content-center">
+      <p><%= devise_error_messages! %></p>
+		  <div class="col-md-8 sign_up-sec login-sec">
+		    <h2 class="text-center">Renvoyer le lien d'activation</h2>
+        <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
 
-<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
+        <div class="input-group form-group">
+          <span class="input-group-addon"><i class="fa fa-user"></i></span>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Entre ici ton email", class: "form-control", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
+        </div>
+        <div class="form-group d-flex justify-content-center">
+          <%= f.submit "Renvoyer le lien", class: "btn btn-primary" %>
+        </div>
+        <% end %>
+        <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+          <%= link_to "Mot de passe oublié ?", new_password_path(resource_name) %><br />
+        <% end -%>
+      </div>
+    </div>
   </div>
-
-  <div class="actions">
-    <%= f.submit "Resend confirmation instructions" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</section>

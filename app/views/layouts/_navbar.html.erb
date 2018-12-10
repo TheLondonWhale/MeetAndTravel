@@ -1,4 +1,5 @@
 <!--============================= HEADER =============================-->
+
 <div class="nav-menu sticky-top">
   <div class="bg transition">
     <div class="container-fluid fixed">
@@ -6,13 +7,28 @@
         <div class="col-md-12">
           <nav class="navbar navbar-expand-lg">
             <%= link_to root_path, class: "navbar-brand" do %>
-            <%= image_tag "logo.png" %>
+            <%= image_tag "MEET&TRAVEL.png" %>
+            <div class="logo">
+              Meet & Travel
+            </div>
             <% end %>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="fa fa-navicon"></span>
-            </button>
+            <% if user_signed_in? %>
+            <div class="collapse navbar-collapse justify-content-end">
+              <ul class="navbar-nav d-flex align-items-center">
+                <li class="nav-link form-inline">
+                  <%= form_tag searches_path, :method => 'get' do %>
+                  <%= text_field_tag :search, params[:search], placeholder: "Mots-clés...", class: "form-control" %>
+                    <%= submit_tag "Rechercher un bon plan", class: "btn btn-outline-danger top-btn" %>
+                  <%end%>
+                </li>
+                <li class="nav-link">
+                  <span><%= link_to "Recherche avancée", new_search_path %></span>
+                </li>
+              </ul>
+            </div>
+            <% end %>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
-              <ul class="navbar-nav">
+              <ul class="navbar-nav d-flex align-items-center">
                 <li class="nav-link"><%= link_to new_tip_path, class: "btn btn-outline-danger top-btn" do %>
                   <span class="fa fa-plus"></span> Ajouter un bon plan
                   <% end %>
@@ -32,14 +48,15 @@
                     </div>
                   </li>
                 <% else %>
-                  <li class="nav-item nav-link">
-                    <a class="nav-link" href="" data-toggle="modal" data-target="#exampleModal">SE CONNECTER</a>
+                  <li class="nav-link">
+                    <a class="btn btn-outline-danger top-btn" href="" data-toggle="modal" data-target="#exampleModal">
+                      <span class="fa fa-sign-in"></span> &nbsp;SE CONNECTER</a>
                   </li>
                 <% end %>
                 <li class="nav-item nav-link">
                   <% if user_signed_in? %>
                   <%= link_to conversations_path, class: "nav-link" do %>
-                    <i class="fa fa-envelope-o"></i>&nbsp&nbsp0
+                    <i class="fa fa-envelope-o"></i>&nbsp&nbsp<%= @n %>
                   <% end %>
                   <% else %>
                   <% end %>

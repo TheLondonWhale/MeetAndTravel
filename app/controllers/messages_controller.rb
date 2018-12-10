@@ -1,3 +1,4 @@
+require 'pry'
 class MessagesController < ApplicationController
   before_action :authenticate_user!
 
@@ -6,7 +7,6 @@ class MessagesController < ApplicationController
   end
 
   def index
-    @conversations = Conversation.all
     @messages = @conversation.messages
     if @messages.length > 10
       @over_ten = true
@@ -18,10 +18,13 @@ class MessagesController < ApplicationController
     end
     if @messages.last
       if @messages.last.user_id != current_user.id
-        @messages.last.read = true;
+        @messages.each do |msg|
+          msg.read = true
+          msg.save
+        end
       end
     end
-    @message = @conversation.messages.new
+      @message = @conversation.messages.new
   end
 
   def show
