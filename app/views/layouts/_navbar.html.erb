@@ -10,8 +10,9 @@
             <%= image_tag "MEET&TRAVEL.png" %>
             <div class="logo">
               Meet & Travel
-              </div>
+            </div>
             <% end %>
+            <% if user_signed_in? %>
             <div class="collapse navbar-collapse justify-content-end">
               <ul class="navbar-nav d-flex align-items-center">
                 <li class="nav-link form-inline">
@@ -25,6 +26,7 @@
                 </li>
               </ul>
             </div>
+            <% end %>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
               <ul class="navbar-nav d-flex align-items-center">
                 <li class="nav-link"><%= link_to new_tip_path, class: "btn btn-outline-danger top-btn" do %>
@@ -46,8 +48,9 @@
                     </div>
                   </li>
                 <% else %>
-                  <li class="nav-item nav-link">
-                    <a class="nav-link" href="" data-toggle="modal" data-target="#exampleModal">SE CONNECTER</a>
+                  <li class="nav-link">
+                    <a class="btn btn-outline-danger top-btn" href="" data-toggle="modal" data-target="#exampleModal">
+                      <span class="fa fa-sign-in"></span> &nbsp;SE CONNECTER</a>
                   </li>
                 <% end %>
                 <li class="nav-item nav-link">
