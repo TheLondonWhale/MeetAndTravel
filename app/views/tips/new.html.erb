@@ -43,7 +43,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <%= f.label :category, "Catégories" %>
-                                        <%= f.select :category_ids, Category.all.collect {|x| [x.name, x.id]}, {}, :multiple => true, as: :check_boxes %>
+                                          <%= f.collection_check_boxes :category_ids, Category.all, :id, :name %>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
