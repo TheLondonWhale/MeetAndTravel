@@ -7,20 +7,8 @@
 </div>
 
 <div class="container">
-  <div class="p-3 my-3 bg-blue">
-    <% if current_user.avatar.attached? %>
-      <%= image_tag current_user.avatar, class: "avatar rounded float-left" %>
-    <% else %>
-      <%= image_tag "avatar.jpg", class: "avatar rounded float-left" %>
-    <% end %>
-    <div>
-      <h6 class="mb-0 lh-100"><%= current_user.firstname %></h6>
-      <small>Messages</small>
-    </div>
-  </div>
-
   <div class="my-3 p-3 bg-white rounded box-shadow">
-    <h5 class="border-bottom border-gray pb-2 mb-0">Conversations</h5>
+    <h5 class="border-bottom border-gray pb-2 mb-0">Conversations de <%= current_user.firstname %></h5>
       <% @conversations.each do |conversation| %>
         <% if conversation.sender_id == current_user.id || conversation.recipient_id == current_user.id %>
          <% if conversation.sender_id == current_user.id %>

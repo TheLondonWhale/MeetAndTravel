@@ -1,7 +1,7 @@
 <section class="login-block">
   <div class="container">
     <div class="row d-flex justify-content-center">
-      <p><%= devise_error_messages! %></p>
+      <p><%= render 'layouts/error_messages', object: resource %></p>
 		  <div class="col-md-8 sign_up-sec login-sec">
 		    <h2 class="text-center">Mot de passe oublié ?</h2>
         <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
