@@ -22,7 +22,7 @@ class TipsController < ApplicationController
     end
     respond_to do |format|
       if @tip.save
-        format.html { redirect_to @tip, notice: 'Tip was successfully created.' }
+        format.html { redirect_to @tip }
         format.json { render :show, status: :created, location: @tip }
       else
         format.html { render :new }
@@ -44,7 +44,7 @@ class TipsController < ApplicationController
   private
 
   def tip_params
-    params.require(:tip).permit(:category_ids, :id, :title, :description, :pictures, :site,:name,category_ids:[]).merge(creator_id: current_user.id)
+    params.require(:tip).permit(:category_ids, :street, :city, :country, :id, :title, :description, :pictures, :site,:name,category_ids:[]).merge(creator_id: current_user.id)
   end
 
   def set_tip
