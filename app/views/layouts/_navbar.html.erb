@@ -16,9 +16,10 @@
             <div class="collapse navbar-collapse justify-content-end">
               <ul class="navbar-nav d-flex align-items-center">
                 <li class="nav-link form-inline">
-                  <%= form_tag searches_path, :method => 'get' do %>
-                  <%= text_field_tag :search, params[:search], placeholder: "Mots-clés...", class: "form-control" %>
-                    <%= submit_tag "Rechercher un bon plan", class: "btn btn-outline-danger top-btn" %>
+                  <%= form_for Search.new do |f| %>
+                  
+                  <%= f.text_field :keywords, placeholder: "Mots-clés...", class: "form-control" %>
+                    <%= f.submit "Rechercher un bon plan", class: "btn btn-outline-danger top-btn" %>
                   <%end%>
                 </li>
                 <li class="nav-link">
