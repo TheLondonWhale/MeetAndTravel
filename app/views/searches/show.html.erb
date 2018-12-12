@@ -8,24 +8,25 @@
 
 <div class="row">
   <% @search.each do |c| %>
-<% for i in 0...c.categories.count %>
-<p><%= c.categories[i].name%></p>
-<% end %>
+
     <div class="col-md-4 card-1">
       <div class="card">
+        <div class="card-body">
         <% if c.pictures.attached? %>
           <%= image_tag c.pictures.first, class: "card-img-top"%>
         <% else %>
           <%= image_tag "featured-img2.jpg", class: "card-img-top"%>
         <% end %>
-        <div class="card-body">
+
           <h5 class="card-title"><%= c.title %></h5>
           <ul class="card-rating">
             <li><%= c.likes.count %><i class="fa fa-heart"></i></li>
             <li><i class="fa fa-circle" aria-hidden="true"></i></li>
             <li><%= c.comments.count %> <%= c.comments.count == 1 || 0 ? 'commentaire' : 'commentaires'%></li>
             <li><i class="fa fa-circle" aria-hidden="true"></i></li>
-            <li>Catégorie xxx</li>
+            <li><% for i in 0...c.categories.count %>
+            <%= c.categories[i].name%>
+            <% end %></li>
           </ul>
           <p class="card-text"><%= c.description.truncate_words(20)%>
             <% if c.description.scan(/\w+/).size > 20 %>
@@ -34,7 +35,7 @@
           </p>
         </div>
         <div class="card-bottom d-flex justify-content-between align-items-center">
-            <p><i class="fa fa-location-arrow"></i>SAN FRANCISCO</p>
+            <p><i class="fa fa-location-arrow"></i></p>
             <p><%= link_to "Voir ce bon plan", tip_path(c.id), class: "btn btn-outline-danger top-btn form-control-sm" %></p>
         </div>
       </div>
