@@ -1,0 +1,12 @@
+<% if object.errors.any? %>
+  <div id="error_explanation">
+    <div class="alert alert-danger alert-dismissable">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <ul>
+        <% object.errors.messages.each do |attr, msg| %>
+          <li><%= msg.join(', ') %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+<% end %>

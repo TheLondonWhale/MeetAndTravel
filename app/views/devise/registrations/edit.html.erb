@@ -3,10 +3,8 @@
 		<div class="col-lg-12 sign_up-sec login-sec">
       <div class="row">
         <div class="col-sm-12">
-          <div class="form-group">
             <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-            <%= devise_error_messages! %>
-          </div>
+            <%= render 'layouts/error_messages', object: resource %>
           <div class="row d-flex justify-content-center">
             <div>
               <% if @user.avatar.attached? %>

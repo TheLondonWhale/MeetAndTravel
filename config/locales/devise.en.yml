@@ -3,19 +3,19 @@
 en:
   devise:
     confirmations:
-      confirmed: "Votre compte a bien été activé."
-      send_instructions: "Vous allez recevoir un email pour activer votre compte dans quelques minutes."
+      confirmed: "Ton compte a bien été activé."
+      send_instructions: "Tu vas recevoir un email pour activer ton compte dans quelques minutes."
       send_paranoid_instructions: "If your email address exists in our database, you will receive an email with instructions for how to confirm your email address in a few minutes."
     failure:
-      already_authenticated: "Vous êtes déjà connecté."
-      inactive: "Votre compte n'est pas encore activé."
+      already_authenticated: "Tu es déjà connecté(e)."
+      inactive: "Ton compte n'est pas encore activé."
       invalid: "%{authentication_keys} ou mot de passe invalide(s)."
       locked: "Your account is locked."
       last_attempt: "You have one more attempt before your account is locked."
       not_found_in_database: "%{authentication_keys} ou mot de passe invalide(s)."
       timeout: "Your session expired. Please sign in again to continue."
-      unauthenticated: "Vous devez vous identifier ou créer un compte pour continuer"
-      unconfirmed: "Vous devez confirmer votre adresse email avant de continuer"
+      unauthenticated: "Tu dois t'identifier ou créer un compte pour continuer"
+      unconfirmed: "Tu dois confirmer ton adresse email avant de continuer"
     mailer:
       confirmation_instructions:
         subject: "Confirmation instructions"
@@ -32,13 +32,13 @@ en:
       success: "Successfully authenticated from %{kind} account."
     passwords:
       no_token: "You can't access this page without coming from a password reset email. If you do come from a password reset email, please make sure you used the full URL provided."
-      send_instructions: "You will receive an email with instructions on how to reset your password in a few minutes."
+      send_instructions: "Tu vas recevoir un email te permettant de réinitialiser ton mot de passe dans quelques minutes"
       send_paranoid_instructions: "If your email address exists in our database, you will receive a password recovery link at your email address in a few minutes."
-      updated: "Your password has been changed successfully. You are now signed in."
-      updated_not_active: "Your password has been changed successfully."
+      updated: "Ton mot de passe a été modifié avec succès, tu es maintenant connecté(e)."
+      updated_not_active: "Ton mot de passe a été modifié avec succès."
     registrations:
       destroyed: "Salut ! Ton compte a été supprimé avec succès, nous espérons te revoir bientôt !"
-      signed_up: "Welcome! You have signed up successfully."
+      signed_up: "Bienvenue ! Ton compte a été créé avec succès."
       signed_up_but_inactive: "You have signed up successfully. However, we could not sign you in because your account is not yet activated."
       signed_up_but_locked: "You have signed up successfully. However, we could not sign you in because your account is locked."
       signed_up_but_unconfirmed: "Un email t'a été envoyé avec un lien de confirmation te permettant d'activer ton compte."
@@ -54,7 +54,7 @@ en:
       unlocked: "Your account has been unlocked successfully. Please sign in to continue."
   errors:
     messages:
-      already_confirmed: "was already confirmed, please try signing in"
+      already_confirmed: "a déjà été confirmé, merci d'essayer de te connecter."
       confirmation_period_expired: "needs to be confirmed within %{period}, please request a new one"
       expired: "has expired, please request a new one"
       not_found: "not found"

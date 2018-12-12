@@ -27,6 +27,7 @@
                       </div>
                       <br/>
                       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+                      <%= render 'layouts/error_messages', object: resource %>
                       <div class="field form-group">
                         <%= f.text_field :login, autofocus: true, placeholder: "Pseudo ou email", class: "form-control"%>
                       </div>

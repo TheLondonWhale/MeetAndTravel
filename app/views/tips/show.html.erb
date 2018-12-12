@@ -1,3 +1,11 @@
+<% provide :head_tags do %>
+    <meta name='turbolinks-visit-control' content='reload'>
+    <script>
+    document.addEventListener("DOMContentLoaded", function(){
+        initMap(<%=@tip.latitude%>, <%=@tip.longitude%>)
+    });
+    </script>
+<% end %>
     <!--============================= BOOKING =============================-->
 <div class="container">
   <div class="row">
@@ -110,10 +118,10 @@
             </div>
             <div class="col-md-4 responsive-wrap">
                 <div class="contact-info">
-                    <%= image_tag "map.jpg", class: "img-fluid" %>
+                    <div id="map"></div>
                     <div class="address">
                         <span class="fa fa-location-arrow"></span>
-                        <p> Doyers St<br> New York, NY 10013<br> b/t Division St & St James Pl <br> Chinatown, Civic Center</p>
+                        <p><%= @tip.street %><br><%= @tip.city %><br><%= @tip.country %></p>
                     </div>
                 </div>
                 <div class="follow">

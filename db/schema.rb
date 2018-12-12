@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_09_172810) do
+ActiveRecord::Schema.define(version: 2018_12_11_132700) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -109,6 +109,9 @@ ActiveRecord::Schema.define(version: 2018_12_09_172810) do
     t.integer "comments_count", default: 0
     t.bigint "creator_id"
     t.string "site"
+    t.string "street"
+    t.string "city"
+    t.string "country"
     t.index ["creator_id"], name: "index_tips_on_creator_id"
   end
 

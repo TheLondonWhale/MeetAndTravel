@@ -1,7 +1,7 @@
 <section class="login-block">
   <div class="container">
     <div class="row">
-        <p><%= devise_error_messages! %></p>
+        <p><%= render 'layouts/error_messages', object: resource %></p>
 		  <div class="col-md-4 sign_up-sec login-sec">
 		    <h2 class="text-center">Créer un compte</h2>
         <div class="form-group">

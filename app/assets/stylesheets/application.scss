@@ -280,7 +280,7 @@
  //    background: #ff6b6b;
  // }
  .dropdown-menu {
-     border-radius: 0;
+     border-radius: 30;
      padding: 0;
  }
 
@@ -1105,11 +1105,6 @@
      }
  }
 
- #map {
-     height: 100%;
-     width: 100%;
- }
-
 
  /*
     BOOKING PAGE
@@ -1798,11 +1793,6 @@
      &:hover {
          background: #ea5555;
      }
- }
-
- #map {
-     height: 100%;
-     width: 100%;
  }
 
 

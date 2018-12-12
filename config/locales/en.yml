@@ -31,3 +31,18 @@
 
 en:
   hello: "Hello world"
+
+en:
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              blank: "N'oublie pas de renseigner une adresse email."
+              invalid: "Ton email est invalide."
+            password:
+              blank: "N'oublie pas de renseigner un mot de passe."
+              invalid: "Ton mot de passe est invalide."
+            current_password:
+              blank: "N'oublie pas de renseigner ton mot de passe actuel."

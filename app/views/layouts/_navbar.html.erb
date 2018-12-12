@@ -23,7 +23,7 @@
                   <%end%>
                 </li>
                 <li class="nav-link">
-                  <span><%= link_to "Recherche avancée", new_search_path %></span>
+                  <span><small><%= link_to "Recherche avancée", new_search_path %></small></span>
                 </li>
               </ul>
             </div>
@@ -44,8 +44,12 @@
                       <% end %>
                       &nbsp;<span class="fa fa-angle-down"></span></a>
                     <div class="dropdown-menu">
-                      <%= link_to "Mon profil", edit_user_registration_path, class: "dropdown-item" %>
-                      <%= link_to "Se déconnecter", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+                      <%= link_to edit_user_registration_path, class: "dropdown-item" do %>
+                      <span class="fa fa-user" style="font-size:15px;">&nbsp;&nbsp;</span> Mon profil
+                      <% end %>
+                      <%= link_to destroy_user_session_path, method: :delete, class: "dropdown-item" do %>
+                      <span class="fa fa-sign-out" style="font-size:15px;">&nbsp;&nbsp;</span> Se déconnecter
+                      <% end %>
                     </div>
                   </li>
                 <% else %>

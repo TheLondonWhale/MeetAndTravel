@@ -67,34 +67,27 @@
 
 
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <div class="form-group">
-                                        <label>Adresse</label>
-                                        <input type="text" class="form-control add-listing_form">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Code Postal</label>
-                                        <input type="text" class="form-control add-listing_form">
+                                        <%= f.label :street, "Rue" %>
+                                        <%= f.text_field :street, class: "form-control add-listing_form" %>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="row">
+                              <div class="col-md-6">
+                                  <div class="form-group">
+                                    <%= f.label :city, "Ville" %>
+                                    <%= f.text_field :city, class: "form-control add-listing_form" %>
+                                  </div>
+                              </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Ville</label>
-                                        <input type="text" class="form-control add-listing_form">
+                                      <%= f.label :country, "Pays" %>
+                                      <%= f.text_field :country, class: "form-control add-listing_form" %>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Pays</label>
-                                        <input type="text" class="form-control add-listing_form">
-                                    </div>
-                                </div>
-
                             </div>
                             <!--//End Add Location -->
                             <!-- Add Gallery -->
