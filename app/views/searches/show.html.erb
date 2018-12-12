@@ -1,4 +1,6 @@
-<h1 class="text-center">Résultats de la recherche</h1><br>
+<div class="login-sec">
+<h2 class="text-center">Résultats de la recherche</h2>
+</div>
 
 <% if @search.nil? %>
 
@@ -8,7 +10,10 @@
 
 <div class="row">
   <% @search.each do |c| %>
+<<<<<<< HEAD
 
+=======
+>>>>>>> bc36293905b5adf62bb0dd0fae85d37a8b819d99
     <div class="col-md-4 card-1">
       <div class="card">
         <div class="card-body">
@@ -25,7 +30,11 @@
             <li><%= c.comments.count %> <%= c.comments.count == 1 || 0 ? 'commentaire' : 'commentaires'%></li>
             <li><i class="fa fa-circle" aria-hidden="true"></i></li>
             <li><% for i in 0...c.categories.count %>
+<<<<<<< HEAD
             <%= c.categories[i].name%>
+=======
+            <p><%= c.categories[i].name%></p>
+>>>>>>> bc36293905b5adf62bb0dd0fae85d37a8b819d99
             <% end %></li>
           </ul>
           <p class="card-text"><%= c.description.truncate_words(20)%>

@@ -17,7 +17,7 @@
               <ul class="navbar-nav d-flex align-items-center">
                 <li class="nav-link form-inline">
                   <%= form_for Search.new do |f| %>
-                  
+
                   <%= f.text_field :keywords, placeholder: "Mots-clés...", class: "form-control" %>
                     <%= f.submit "Rechercher un bon plan", class: "btn btn-outline-danger top-btn" %>
                   <%end%>

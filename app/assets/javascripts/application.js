@@ -13,10 +13,9 @@
 //= require jquery3
 //= require popper
 //= require bootstrap-sprockets
-//= require rails-ujs
+//= require jquery_ujs
 //= require activestorage
 //= require turbolinks
-//= require_tree .
 //= require js/bootstrap
 //= require js/bootstrap.min
 //= require js/contact
@@ -26,12 +25,10 @@
 //= require js/script
 //= require js/swiper.min
 //= require js/validate
+//= require_tree .
 
-setTimeout(fade_out, 5000);
 
-function fade_out() {
-  $(".hero-title").fadeOut(300);
-};
+// caroussel
 
 jQuery(document).ready(function ($) {
 
@@ -74,6 +71,7 @@ jQuery(document).ready(function ($) {
 
 });
 
+// carte show tips
 function initMap(lat, lng) {
     var myCoords = new google.maps.LatLng(lat, lng);
     var mapOptions = {
@@ -86,4 +84,51 @@ function initMap(lat, lng) {
         map: map
     });
     console.log('map');
+}
+
+// carte index
+function initializeMap() {
+
+  var data = $('#map-canvas').data('users');
+
+   console.log(data);
+
+    var myLatLng = {lat: 0, lng: 0};
+
+    var mapOptions = {
+        zoom: 10,
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        center: new google.maps.LatLng(0,0)
+    };
+
+    var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+
+    // Geolocation code
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+            map.panTo(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
+            console.log(myLatLng);
+            myLatLng = {lat:position.coords.latitude, lng:position.coords.longitude};
+            console.log(myLatLng);
+            var marker = new google.maps.Marker({
+                  position: myLatLng,
+                  map: map,
+                  title: 'Hello World!',
+                  icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
+              });
+            map.setZoom(13);
+        });
+    }
+
+    for (var i = 0, length = data.length; i < length; i++) {
+      var j = data[i],
+          latLng = new google.maps.LatLng(j.latitude, j.longitude);
+      // Creating a marker and putting it on the map
+      var marker = new google.maps.Marker({
+        position: latLng,
+        map: map,
+        title: data.name
+      });
+    }
+
 }

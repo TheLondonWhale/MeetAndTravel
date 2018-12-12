@@ -15,16 +15,13 @@ array_cat.each do |list|
 
 end
 
-User.create(firstname: "Mouss",lastname: "Ait", username: "Moumouss", password:"azerty", password_confirmation: "azerty", email: "mouss@gmail.com")
-
-User.create(firstname: "Virginie",lastname: "Valeur", username: "VVH", password:"azerty", password_confirmation: "azerty", email: "vir@gmail.com")
+User.create(firstname: "Mustapha",lastname: "Ait", username: "Mouss", password:"azerty", password_confirmation: "azerty", email: "ait.mus06@gmail.com", longitude: "2.287592", latitude: "48.862725")
+User.create(firstname: "Virginie",lastname: "Valeur", username: "VVH", password:"azerty", password_confirmation: "azerty", email: "virvaleur@hotmail.com", longitude: "2.337644", latitude: "48.860611")
+User.create(firstname: "Anaïs",lastname: "Diologeant", username: "Ana", password:"azerty", password_confirmation: "azerty", email: "anais.diologeant@hotmail.fr", longitude: "2.385683", latitude: "48.835455")
+User.create(firstname: "Thomas",lastname: "Perus", username: "Tom", password:"azerty", password_confirmation: "azerty", email: "thomas.perus@espeme.com", longitude: "2.298088", latitude: "48.855899")
 
 Tip.create(creator_id: "1", title: "Coucou", description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.").categories << [Category.find(1), Category.find(2), Category.find(3)]
-
-
 Tip.create(creator_id: "1", title: "Resto Naples", description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ").categories << [Category.find(1),Category.find(3)]
-
-
 Tip.create(creator_id: "2", title: "Sortie plongée sous-marine", description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.").categories << Category.find(3)
 
 Like.create(user_id: "1", tip_id: "3")
