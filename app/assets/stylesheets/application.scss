@@ -330,8 +330,10 @@
  .hero-wrap {
      text-align: center;
      min-height: 500px;
+     background: image-url('van.jpg') no-repeat;
+     background-size: cover;
      @media (max-width: 767px) {
-      min-height: 600px;
+      min-height: 200px;
      }
      h1 {
          color: #484848;
@@ -451,7 +453,9 @@
 
    padding: 20px;
    border-radius: 20px;
-   background-color: rgba(185, 195, 193, .2);
+      h1 {
+        color: #FEFEFE;
+      }
  }
 
  .home-bg {

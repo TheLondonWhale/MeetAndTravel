@@ -8,9 +8,6 @@
 
 <div class="row">
   <% @search.each do |c| %>
-<% for i in 0...c.categories.count %>
-<p><%= c.categories[i].name%></p>
-<% end %>
     <div class="col-md-4 card-1">
       <div class="card">
         <% if c.pictures.attached? %>
@@ -25,7 +22,9 @@
             <li><i class="fa fa-circle" aria-hidden="true"></i></li>
             <li><%= c.comments.count %> <%= c.comments.count == 1 || 0 ? 'commentaire' : 'commentaires'%></li>
             <li><i class="fa fa-circle" aria-hidden="true"></i></li>
-            <li>Catégorie xxx</li>
+            <li><% for i in 0...c.categories.count %>
+            <p><%= c.categories[i].name%></p>
+            <% end %></li>
           </ul>
           <p class="card-text"><%= c.description.truncate_words(20)%>
             <% if c.description.scan(/\w+/).size > 20 %>

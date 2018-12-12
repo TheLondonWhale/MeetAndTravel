@@ -25,14 +25,10 @@ class Search < ApplicationRecord
 
 merged_table_of_tips_ids = table_of_ids_title & table_of_ids_cats
 
- binding.pry
-
  merged_table_of_tips_ids.each do |tip|
    result = Tip.find(tip)
-   binding.pry
    results << result
  end
- binding.pry
     return results
   end
 
