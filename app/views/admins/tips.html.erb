@@ -1,0 +1,36 @@
+
+<div class="row justify-content-center">
+  <div class="titile-block title-block_subpage login-sec">
+      <h2>Tous les bons plans</h2>
+  </div>
+</div>
+<div class="container">
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Titre</th>
+      <th scope="col">Auteur</th>
+      <th scope="col">Date de publication</th>
+      <th scope="col">&nbsp;</th>
+      <th scope="col">&nbsp;</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @tips.each do |tip| %>
+    <% writter = User.find(tip.creator_id) %>
+    <tr>
+      <td><%= tip.id %></td>
+      <td><%= tip.title %></td>
+      <td><%= writter.firstname %></td>
+      <td><%= tip.tip_time %></td>
+      <td><%= link_to tip do %>
+      <span class="fa fa-eye" style="font-size:25px;"></span>
+      <% end %></td>
+      <td><%= link_to tip, method: :delete, data: { confirm: "La conversation va être définitivement supprimée, es-tu sûr(e) ?" } do %>
+      <span class="fa fa-trash-o" style="font-size:25px;"></span>
+      <% end %></td>
+    </tr>
+  <% end %>
+</table>
+</div>

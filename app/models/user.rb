@@ -1,9 +1,9 @@
 class User < ApplicationRecord
-  has_many :comments
-  has_many :tips
+  has_many :comments, dependent: :destroy
+  has_many :tips, dependent: :destroy
   has_many :likes, dependent: :destroy
-  has_one_attached :avatar
-  has_many :conversations
+  has_one_attached :avatar, dependent: :destroy
+  has_many :conversations, dependent: :destroy
 
   attr_accessor :login
   # Include default devise modules. Others available are:
@@ -41,5 +41,9 @@ class User < ApplicationRecord
 
   def age
     age = Date.today.year - birthdate.year
+  end
+
+  def user_time
+    @usertime = updated_at.strftime("%d/%m/%y à %Hh%M")
   end
 end

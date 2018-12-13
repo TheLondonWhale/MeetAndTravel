@@ -91,9 +91,11 @@ function initializeMap() {
 
   var data = $('#map-canvas').data('users');
 	var currentuser = $('#currentuser').data('currentuser');
+	var usertime = $('#usertime').data('usertime');
 
    console.log(data);
 	 console.log(currentuser);
+	 console.log(usertime);
 
     var myLatLng = {lat: 50.63, lng: 3.06};
 
@@ -142,7 +144,7 @@ function initializeMap() {
           infoWin.setContent(`
 								<div class='follow-img'>
 							<h5 class="text-center" style="color:#ff6b6b;">${j.firstname}</h5>
-              <p class="customer-text"><b>Connecté ici le : </b>${j.updated_at}</p>
+              <p class="customer-text"><b>Connecté ici le : </b>${usertime}</p>
               <a class="btn btn-primary justify-content-center" rel="nofollow" data-method="post" href="/conversations?recipient_id=${j.id}&sender_id=${currentuser}">Envoyer un message</a>
 								</div>
               `)

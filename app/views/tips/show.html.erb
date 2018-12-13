@@ -11,13 +11,19 @@
   <div class="row">
     <div class="col-md-6 responsive-wrap">
       <h5><%= @tip.title %></h5>
+      <p class="reserve-description"><small>Publié le <%= @tip.time %></small></p>
       <hr>
       <p class="booking-checkbox"><%= @tip.description %></p>
       <hr>
       <div class="row d-flex justify-content-between">
-        <div class="col-md-3 responsive-wrap">
+        <div class="col-md responsive-wrap">
+          Catégories : 
           <% @tip.categories.each do |name| %>
-          <%= name.name %>
+            <% if name == @tip.categories.last %>
+              <%= name.name %>
+            <% else %>
+              <%= name.name %>,
+            <% end %>
           <% end %>
         </div>
         <div class="col-md-3 responsive-wrap">
@@ -62,83 +68,85 @@
 
     <!--//END RESERVE A SEAT -->
 <section class="gray-dark booking-details_wrap">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 responsive-wrap">
-                <div class="booking-checkbox_wrap">
-                  <div class="booking-checkbox_wrap mt-4">
-                    <h4><%= @tip.comments.count %> <%= (@tip.comments.count) == 1 || (@tip.comments.count) == 0 ? 'commentaire' : 'commentaires' %>
-                    <hr>
-                    <% @tip.comments.each do |comment| %>
-                    <div class="customer-review_wrap">
-                        <div class="customer-img">
-                          <% commentor = User.find(comment.user_id) %>
-                            <% if commentor.avatar.attached? %>
-                              <%= image_tag commentor.avatar, class: "avatar" %>
-                            <% else %>
-                              <%= image_tag "avatar.jpg", class: "avatar" %>
-                            <% end %>
-                            <p><%= commentor.username %></p>
-                            <span><%= commentor.comments.count %> <%= (commentor.comments.count) == 1 || (commentor.comments.count) == 0 ? 'commentaire' : 'commentaires' %>
-                        </div>
-                        <div class="customer-content-wrap">
-                          <div class="customer-review">
-                            <p class="customer-text">
-                              <%= comment.comment_time %><br>
-                              <%= comment.content %>
-                            </p>
-                          </div>
-                        </div>
-                    </div>
-                    <hr>
-                    <% end %>
-                    <% if @tip.comments.count == 0 %>
-                    <p class="customer-text"><h5>Pas encore de commentaires</h5>Sois le premier à en écrire un !</p>
-                    <% end %>
-                    <h5>Ajouter un commentaire</h5>
-                    <h6><% if current_user.avatar.attached? %>
-                      <%= image_tag current_user.avatar, class: "avatar" %>
-                    <% else %>
-                      <%= image_tag "avatar.jpg", class: "avatar" %>
-                    <% end %><%= current_user.firstname %></h6>
-                    <div class="form-group">
-
-                    <%= form_for([ @tip, @tip.comments.build ]) do |f| %>
-                    <p>
-                      <%= f.text_area :content, class:"form-control" %>
-                    </p>
-                    <p>
-                      <%= f.submit "Publier mon commentaire", class:"btn btn-primary" %>
-                    </p>
-                    <% end %>
-
-                    </div>
-                  </div>
-                </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 responsive-wrap">
+        <div class="booking-checkbox_wrap">
+          <h4><%= @tip.comments.count %> <%= (@tip.comments.count) == 1 || (@tip.comments.count) == 0 ? 'commentaire' : 'commentaires' %>
+          <hr>
+          <% @tip.comments.each do |comment| %>
+          <div class="customer-review_wrap">
+            <div class="customer-img">
+              <% commentor = User.find(comment.user_id) %>
+              <% if commentor.avatar.attached? %>
+                <%= image_tag commentor.avatar, class: "avatar" %>
+              <% else %>
+                <%= image_tag "avatar.jpg", class: "avatar" %>
+              <% end %>
+              <p><%= commentor.username %></p>
+              <span><%= commentor.comments.count %> <%= (commentor.comments.count) == 1 || (commentor.comments.count) == 0 ? 'commentaire' : 'commentaires' %>
             </div>
-            <div class="col-md-4 responsive-wrap">
-                <div class="contact-info">
-                    <div id="map"></div>
-                    <div class="address">
-                        <span class="fa fa-location-arrow"></span>
-                        <p><%= @tip.street %><br><%= @tip.city %><br><%= @tip.country %></p>
-                    </div>
-                </div>
-                <div class="follow">
-                    <div class="follow-img">
-                      <% writter = User.find(@tip.creator_id) %>
-                      <% if writter.avatar.attached? %>
-                        <%= image_tag writter.avatar, class: "avatar" %>
-                      <% else %>
-                        <%= image_tag "avatar.jpg", class: "avatar" %>
-                      <% end %>
-                      <h6><%= writter.firstname %></h6>
-                      <p class="customer-text"><%= writter.description %></p>
-                      <%= link_to 'Envoyer un message privé', conversations_path(sender_id: current_user.id, recipient_id: writter.id), method: 'post' %>
-                    </div>
-                </div>
+            <div class="customer-content-wrap">
+              <p class="customer-text text-justify"><%= comment.content %></p>
             </div>
+          </div>
+          <hr>
+          <% end %>
+          <% if @tip.comments.count == 0 %>
+            <p class="customer-text"><h5>Pas encore de commentaires</h5>Sois le premier à en écrire un !</p>
+          <% end %>
         </div>
+        <div class="booking-checkbox_wrap my-4">
+          <h5>Ajouter un commentaire</h5>
+          <hr>
+          <div class="customer-review-wrap">
+            <div class="customer-img">
+              <% if current_user.avatar.attached? %>
+                <%= image_tag current_user.avatar, class: "avatar" %>
+              <% else %>
+                <%= image_tag "avatar.jpg", class: "avatar" %>
+              <% end %>
+              <p><small><%= current_user.username %></small></p>
+            </div>
+          </div>
+          <div class="customer-content-wrap form-group">
+            <%= form_for([ @tip, @tip.comments.build ]) do |f| %>
+            <p class="customer-text">
+              <%= f.text_area :content, class:"form-control" %>
+            </p>
+            <p>
+              <%= f.submit "Publier mon commentaire", class:"btn btn-primary" %>
+            </p>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 responsive-wrap">
+        <div class="contact-info">
+          <div id="map"></div>
+            <div class="address">
+              <span class="fa fa-location-arrow"></span>
+              <p><%= @tip.street %><br><%= @tip.city %><br><%= @tip.country %></p>
+            </div>
+          </div>
+          <div class="follow">
+            <div class="follow-img">
+              <% writter = User.find(@tip.creator_id) %>
+              <% if writter.avatar.attached? %>
+                <%= image_tag writter.avatar, class: "avatar" %>
+              <% else %>
+                <%= image_tag "avatar.jpg", class: "avatar" %>
+              <% end %>
+              <h6><%= writter.firstname %></h6>
+              <p class="customer-text"><%= writter.description %></p>
+              <% if current_user.id == writter.id %>
+              <% else %>
+                <%= link_to 'Envoyer un message privé', conversations_path(sender_id: current_user.id, recipient_id: writter.id), method: 'post' %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 </section>
 <!--//END BOOKING DETAILS -->

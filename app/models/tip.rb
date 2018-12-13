@@ -22,4 +22,8 @@ class Tip < ApplicationRecord
   def tip_time
     created_at.strftime("le %d/%m/%y à %Hh%M")
   end
+
+  def time
+    created_at.strftime("%d/%m/%y")
+  end
 end

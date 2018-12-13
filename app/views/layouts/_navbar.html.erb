@@ -50,6 +50,14 @@
                       <%= link_to destroy_user_session_path, method: :delete, class: "dropdown-item" do %>
                       <span class="fa fa-sign-out" style="font-size:15px;">&nbsp;&nbsp;</span> Se déconnecter
                       <% end %>
+                <% if current_user.admin? %>
+                      <%= link_to admins_users_path, class: "dropdown-item" do %>
+                      <span class="fa fa-address-book-o" style="font-size:15px;">&nbsp;&nbsp;</span> Les utilisateurs
+                      <% end %>
+                      <%= link_to admins_tips_path, class: "dropdown-item" do %>
+                      <span class="fa fa-edit" style="font-size:15px;">&nbsp;&nbsp;</span> Les bons plans
+                      <% end %>
+                  <% end %>
                     </div>
                   </li>
                 <% else %>
