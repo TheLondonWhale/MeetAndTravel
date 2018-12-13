@@ -6,8 +6,14 @@
 <% end %>
 <!--============================= MAIN TITLE =============================-->
 <% if user_signed_in? %>
+
 <%= content_tag "div", id:"map-canvas", data: {users: User.all} do %>
 <% end %>
+<%= content_tag "div", id:"currentuser", data: {currentuser: current_user.id} do %>
+<% end %>
+<%= puts "Aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"%>
+<%= puts current_user.id %>
+<%= puts "Aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"%>
 <% else %>
 <section class="hero-wrap">
     <div class="container">

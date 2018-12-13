@@ -90,18 +90,22 @@ function initMap(lat, lng) {
 function initializeMap() {
 
   var data = $('#map-canvas').data('users');
+	var currentuser = $('#currentuser').data('currentuser');
 
    console.log(data);
+	 console.log(currentuser);
 
-    var myLatLng = {lat: 0, lng: 0};
+    var myLatLng = {lat: 50.63, lng: 3.06};
 
     var mapOptions = {
         zoom: 10,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
-        center: new google.maps.LatLng(0,0)
+        center: new google.maps.LatLng(50.63,3.06)
     };
 
     var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+
+    var infoWin = new google.maps.InfoWindow();
 
     // Geolocation code
     if (navigator.geolocation) {
@@ -113,10 +117,10 @@ function initializeMap() {
             var marker = new google.maps.Marker({
                   position: myLatLng,
                   map: map,
-                  title: 'Hello World!',
+                  title: 'Ma position',
                   icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
               });
-            map.setZoom(13);
+            map.setZoom(12);
         });
     }
 
@@ -124,11 +128,26 @@ function initializeMap() {
       var j = data[i],
           latLng = new google.maps.LatLng(j.latitude, j.longitude);
       // Creating a marker and putting it on the map
+          addMarker(latLng, j);
+    }
+
+    function addMarker(latLng, j){
       var marker = new google.maps.Marker({
         position: latLng,
         map: map,
-        title: data.name
+        title: j.firstname,
       });
+      if (j){
+        marker.addListener('click', function(){
+          infoWin.setContent(`
+								<div class='follow-img'>
+							<h5 class="text-center" style="color:#ff6b6b;">${j.firstname}</h5>
+              <p class="customer-text"><b>Connecté ici le : </b>${j.updated_at}</p>
+              <a class="btn btn-primary justify-content-center" rel="nofollow" data-method="post" href="/conversations?recipient_id=${j.id}&sender_id=${currentuser}">Envoyer un message</a>
+								</div>
+              `)
+          infoWin.open(map, marker);
+        });
+      }
     }
-
 }

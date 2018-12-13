@@ -38,4 +38,8 @@ class User < ApplicationRecord
       user.skip_confirmation!
     end
   end
+
+  def age
+    age = Date.today.year - birthdate.year
+  end
 end
