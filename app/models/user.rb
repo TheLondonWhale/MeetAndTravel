@@ -52,7 +52,7 @@ end
 private
  def self.parse_name(user, name)
    name_arr = name.split(" ")
-   user.last_name = name_arr.pop
-   user.first_name = name_arr.join(" ")
+   user.lastname = name_arr.pop
+   user.firstname = name_arr.join(" ")
  end
 end
