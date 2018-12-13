@@ -15,6 +15,8 @@ class Tip < ApplicationRecord
 
   after_validation :geocode, if: ->(obj){ obj.fulladdress.present? }
 
+
+
   def fulladdress
     [country, city, street].compact.join(', ')
   end

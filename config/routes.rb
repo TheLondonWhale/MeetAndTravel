@@ -16,6 +16,15 @@ Rails.application.routes.draw do
   resources :tips do
     resources :comments
   end
+
+  resources :tips do
+    collection do
+      get :recent
+      get :oldest
+      get :upvoted
+      get :downvoted
+    end
+  end
   resources :searches
 
   # match "/404", :to => "errors#not_found", :via => :all

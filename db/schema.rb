@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_11_132700) do
+ActiveRecord::Schema.define(version: 2018_12_13_171737) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,8 +43,8 @@ ActiveRecord::Schema.define(version: 2018_12_11_132700) do
   end
 
   create_table "category_to_tips", force: :cascade do |t|
-    t.bigint "tip_id"
-    t.bigint "category_id"
+    t.integer "tip_id"
+    t.integer "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_category_to_tips_on_category_id"
@@ -77,6 +77,13 @@ ActiveRecord::Schema.define(version: 2018_12_11_132700) do
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
+  create_table "locations", force: :cascade do |t|
+    t.string "longitude"
+    t.string "latitude"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "messages", force: :cascade do |t|
     t.text "body"
     t.bigint "conversation_id"
@@ -95,6 +102,8 @@ ActiveRecord::Schema.define(version: 2018_12_11_132700) do
     t.decimal "max_price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "city"
+    t.string "country"
   end
 
   create_table "tips", force: :cascade do |t|
@@ -108,10 +117,12 @@ ActiveRecord::Schema.define(version: 2018_12_11_132700) do
     t.datetime "updated_at", null: false
     t.integer "comments_count", default: 0
     t.bigint "creator_id"
+    t.bigint "category_id"
     t.string "site"
     t.string "street"
     t.string "city"
     t.string "country"
+    t.index ["category_id"], name: "index_tips_on_category_id"
     t.index ["creator_id"], name: "index_tips_on_creator_id"
   end
 
@@ -146,4 +157,5 @@ ActiveRecord::Schema.define(version: 2018_12_11_132700) do
   add_foreign_key "comments", "users"
   add_foreign_key "likes", "tips"
   add_foreign_key "likes", "users"
+  add_foreign_key "tips", "categories"
 end
