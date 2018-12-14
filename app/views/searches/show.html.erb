@@ -1,78 +1,21 @@
-<h1 class="text-center">Résultats de la recherche</h1><br>
-
-<% if @search = [] %>
-<div class="row">
-  <% Tip.all.each do |c| %>
-<% for i in 0...c.categories.count %>
-<p><%= c.categories[i].name%></p>
-<% end %>
-    <div class="col-md-4 card-1">
-      <div class="card">
-        <% if c.pictures.attached? %>
-          <%= image_tag c.pictures.first, class: "card-img-top"%>
-        <% else %>
-          <%= image_tag "featured-img2.jpg", class: "card-img-top"%>
-        <% end %>
-        <div class="card-body">
-          <h5 class="card-title"><%= c.title %></h5>
-          <ul class="card-rating">
-            <li><%= c.likes.count %><i class="fa fa-heart"></i></li>
-            <li><i class="fa fa-circle" aria-hidden="true"></i></li>
-            <li><%= c.comments.count %> <%= c.comments.count == 1 || 0 ? 'commentaire' : 'commentaires'%></li>
-            <li><i class="fa fa-circle" aria-hidden="true"></i></li>
-            <li>Catégorie xxx</li>
-          </ul>
-          <p class="card-text"><%= c.description.truncate_words(20)%>
-            <% if c.description.scan(/\w+/).size > 20 %>
-            <em><%= link_to "Lire plus", tip_path(c.id) %></em>
-            <% end %>
-          </p>
-        </div>
-        <div class="card-bottom d-flex justify-content-between align-items-center">
-            <p><i class="fa fa-location-arrow"></i>SAN FRANCISCO</p>
-            <p><%= link_to "Voir ce bon plan", tip_path(c.id), class: "btn btn-outline-danger top-btn form-control-sm" %></p>
-        </div>
-      </div>
-    </div>
-  <% end %>
+<div class="login-sec">
+<h2 class="text-center">Résultats de la recherche</h2>
 </div>
 
+<% if @search == [] %>
+<%= render 'resultsearchnil'%>
+<%elsif%>
+<%= render 'resultsearch'%>
+<% end %>
+<div>
+  <%= form_for :item_filter, url: items_path, method: :get do |f| %>
+  	<div class='row with-forms'>
+      <%= f.collection_select(:category_id, Category.all, :id, :category_name, {class:"chosen-select", prompt:'Sélectionnez une catégorie', selected:@filters['category_id']}) %>
+  	</div>
+      <%= f.hidden_field :status, value:'published' %>
 
-<%else%>
-<section class="main-block featured-wrap">
-  <div class="container-fluid">
-    <div class="row">
-      <% @search.each do |c| %>
-        <div class="col-md-4 card-1">
-          <div class="card">
-            <% if c.pictures.attached? %>
-              <%= image_tag c.pictures.first, class: "card-img-top"%>
-            <% else %>
-              <%= image_tag "featured-img2.jpg", class: "card-img-top"%>
-            <% end %>
-            <div class="card-body">
-              <h5 class="card-title"><%= c.title %></h5>
-              <ul class="card-rating">
-                <li><%= c.likes.count %><i class="fa fa-heart"></i></li>
-                <li><i class="fa fa-circle" aria-hidden="true"></i></li>
-                <li><%= c.comments.count %> <%= c.comments.count == 1 ||c.comments.count == 0 ? 'commentaire' : 'commentaires'%></li>
-                <li><i class="fa fa-circle" aria-hidden="true"></i></li>
-                <li><%= c.categories.first %></li>
-              </ul>
-              <p class="card-text"><%= c.description.truncate_words(20)%>
-                <% if c.description.scan(/\w+/).size > 20 %>
-                <em><%= link_to "Lire plus", tip_path(c.id) %></em>
-                <% end %>
-              </p>
-            </div>
-            <div class="card-bottom d-flex justify-content-between align-items-center">
-                <p><i class="fa fa-location-arrow"></i></p>
-                <p><%= link_to "Voir ce bon plan", tip_path(c.id), class: "btn btn-outline-danger top-btn form-control-sm" %></p>
-            </div>
-          </div>
-        </div>
-      <% end %>
-    </div>
-    <% end %>
-  </div>
-</section>
+  	<%= f.button type: :submit, class:"button fullwidth margin-top-10" do %>
+  	Recherche
+  	<% end %>
+  <% end %>
+</div>
