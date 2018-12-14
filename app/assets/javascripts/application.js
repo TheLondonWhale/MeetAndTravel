@@ -83,7 +83,6 @@ function initMap(lat, lng) {
         position: myCoords,
         map: map
     });
-    console.log('map');
 }
 
 // carte index
@@ -92,10 +91,10 @@ function initializeMap() {
   var data = $('#map-canvas').data('users');
 	var currentuser = $('#currentuser').data('currentuser');
 	var usertime = $('#usertime').data('usertime');
+	var avatar = $('#avatar').data('avatar');
 
-   console.log(data);
-	 console.log(currentuser);
 	 console.log(usertime);
+	 console.log(avatar);
 
     var myLatLng = {lat: 50.63, lng: 3.06};
 
@@ -153,6 +152,7 @@ function initializeMap() {
         marker.addListener('click', function(){
           infoWin.setContent(`
 								<div class='follow-img'>
+								<img src="${j.avatar}"/>
 							<h5 class="text-center" style="color:#ff6b6b;">${j.firstname}</h5>
               <p class="customer-text"><b>Connecté ici le : </b>${usertime}</p>
               <a class="btn btn-primary justify-content-center" rel="nofollow" data-method="post" href="/conversations?recipient_id=${j.id}&sender_id=${currentuser}">Envoyer un message</a>
@@ -168,8 +168,6 @@ function initMap2(){
   var lat = document.getElementById('place_latitude').value;
   var lng = document.getElementById('place_longitude').value;
 
-  console.log(lat);
-
   // if not defined create default position
   if (!lat || !lng){
       lat=40.712784;
@@ -178,14 +176,11 @@ function initMap2(){
       document.getElementById('place_longitude').value = lng;
   }
 
-  console.log(lng);
-  console.log(1);
-
   var myCoords = new google.maps.LatLng(lat, lng);
 
   var mapOptions = {
   center: myCoords,
-  zoom: 4
+  zoom: 9
   };
 
   var map = new google.maps.Map(document.getElementById('map2'), mapOptions);
@@ -208,9 +203,6 @@ function initMap2(){
           lat = position.coords.latitude;
           lng = position.coords.longitude;
           myCoords= {lat:position.coords.latitude, lng:position.coords.longitude}
-          console.log(3);
-          console.log(lng);
-          console.log(myCoords);
           document.getElementById('place_latitude').value = lat;
           document.getElementById('place_longitude').value = lng;
           marker = new google.maps.Marker({
