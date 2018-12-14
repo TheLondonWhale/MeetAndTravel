@@ -87,6 +87,16 @@
    font-weight: bold;
  }
 
+ #map2 {
+   width: 100%;
+   height: 400px;
+ }
+
+ .argument:hover {
+   background-color: white;
+   border-radius: 25px;
+ }
+
  body {
      font-family: 'Roboto', sans-serif;
  }
@@ -568,7 +578,8 @@
 
  .titile-block {
      text-align: center;
-     margin: 0 0 40px;
+     margin: 0 0 0px;
+     margin-top: 20px;
      p {
          font-family: 'Roboto', sans-serif;
          font-size: 20px;

@@ -44,6 +44,13 @@ class Search < ApplicationRecord
         table_of_ids_cats << tip.id
       end
     end
+<<<<<<< HEAD
+=======
+
+merged_table_of_tips_ids = [table_of_ids_title, table_of_ids_cats].flatten
+
+merged_table_of_uniq_tips_ids = merged_table_of_tips_ids.uniq
+>>>>>>> development
 
     merged_table_of_tips_ids = [table_of_ids_title, table_of_ids_cats,table_of_ids_city,table_of_ids_country].flatten
 

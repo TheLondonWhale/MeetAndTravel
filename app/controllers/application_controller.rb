@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   def configure_devise_parameters
     devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit(:firstname, :username, :email, :password, :password_confirmation, :avatar)}
     devise_parameter_sanitizer.permit(:account_update) { |u| u.permit(:username, :firstname,
-      :lastname, :description, :birthdate, :password, :password_confirmation, :current_password, :avatar)}
+      :lastname, :description, :birthdate, :password, :password_confirmation, :current_password, :avatar, :longitude, :latitude)}
   end
 
   def unread_messages

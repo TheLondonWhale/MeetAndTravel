@@ -33,7 +33,7 @@
             <% end %>
           </p>
         <div>
-          <%= link_to @conversation, method: :delete, data: { confirm: "La conversation va être définitivement supprimée, es-tu sûr(e) ?" } do %>
+          <%= link_to conversation, method: :delete, data: { confirm: "La conversation va être définitivement supprimée, es-tu sûr(e) ?" } do %>
           <span class="fa fa-trash-o pt-3" style="font-size:25px;"></span>
           <% end %>
         </div>
