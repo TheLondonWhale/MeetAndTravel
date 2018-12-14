@@ -42,7 +42,12 @@ class User < ApplicationRecord
   end
 
 def age
-  age = Date.today.year - birthdate.year
+  if birthdate == nil
+    "Non défini"
+  else
+    age = Date.today.year - birthdate.year
+    return "#{age} ans" 
+  end
 end
 
 def user_time
