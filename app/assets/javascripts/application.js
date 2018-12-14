@@ -93,9 +93,6 @@ function initializeMap() {
 	var usertime = $('#usertime').data('usertime');
 	var avatar = $('#avatar').data('avatar');
 
-	 console.log(usertime);
-	 console.log(avatar);
-
     var myLatLng = {lat: 50.63, lng: 3.06};
 
     var mapOptions = {
@@ -109,26 +106,11 @@ function initializeMap() {
     var infoWin = new google.maps.InfoWindow();
 
     // Geolocation code
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function (position) {
-            console.log(myLatLng);
-            myLatLng = {lat:position.coords.latitude, lng:position.coords.longitude};
-            console.log(myLatLng);
-            var marker = new google.maps.Marker({
-                  position: myLatLng,
-                  map: map,
-                  title: 'Géolocalisation',
-                  icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
-              });
-            map.setZoom(12);
-        });
-    }
 
     for (var i = 0, length = data.length; i < length; i++) {
       var j = data[i],
           latLng = new google.maps.LatLng(j.latitude, j.longitude);
 					if (j.id == currentuser) {
-						console.log(j.latitude);
 						if (j.latitude !== null && j.longitude !== null) {
 							var myposition = new google.maps.Marker({
 	              position: latLng,
@@ -175,9 +157,9 @@ function initMap2(){
   var lat = document.getElementById('place_latitude').value;
   var lng = document.getElementById('place_longitude').value;
 
-	var geolat = 0
-	var geolng = 0
-	var myGeoCoords = new google.maps.LatLng(lat, lng);
+  var geolat = 0
+  var geolng = 0
+  var myGeoCoords = new google.maps.LatLng(lat, lng);
 
   // if not defined create default position
   if (!lat || !lng){
@@ -191,47 +173,20 @@ function initMap2(){
 
   var mapOptions = {
   center: myCoords,
-  zoom: 9
+  zoom: 4
   };
 
   var map = new google.maps.Map(document.getElementById('map2'), mapOptions);
 
   var marker = new google.maps.Marker({
-      title: 'Ma position',
-      icon: 'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png',
+      title: 'Définr ma position sur le site',
       map: map,
+      position: myCoords,
       draggable: true,
-			position: myCoords
   });
 
   var infoWin = new google.maps.InfoWindow();
 
-  // Geolocation code
-  if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(function (position) {
-          geolat = position.coords.latitude;
-          geolng = position.coords.longitude;
-          myGeoCoords= {lat:position.coords.latitude, lng:position.coords.longitude}
-          var geomark = new google.maps.Marker({
-                position: myGeoCoords,
-                map: map,
-                title: 'Ma géolocalisation',
-                icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
-                animation: google.maps.Animation.DROP,
-            });
-          map.setZoom(14);
-					// When clicked, InfoWindow show where you are
-					geomark.addListener('click', function(){
-						infoWin.setContent(`Ta géolocalisation`)
-						infoWin.open(map, geomark);
-					});
-			});
-	}
-
-  // when input values change call refreshMarker
-  document.getElementById('place_latitude').onchange = refreshMarker;
-  document.getElementById('place_longitude').onchange = refreshMarker;
-  // when marker is dragged update input values
   marker.addListener('drag', function() {
       latlng = marker.getPosition();
       newlat=(Math.round(latlng.lat()*1000000))/1000000;
@@ -239,29 +194,79 @@ function initMap2(){
       document.getElementById('place_latitude').value = newlat;
       document.getElementById('place_longitude').value = newlng;
   });
-	// When drag ends, center (pan) the map on the marker position
+
+  // When drag ends, center (pan) the map on the marker position
   marker.addListener('dragend', function() {
       map.panTo(marker.getPosition());
+      console.log(marker.getPosition());
   });
 
-	marker.addListener('click', function(){
-	 infoWin.setContent(`Les voyageurs te voient ici !`)
-	 infoWin.open(map, marker);
- 	});
+  marker.addListener('click', function(){
+    infoWin.setContent(`les uatres te voient là!`)
+    infoWin.open(map, marker);
+  });
 
-	function refreshMarker(){
-	     lat = document.getElementById('place_latitude').value;
-	     lng = document.getElementById('place_longitude').value;
-	     var myCoords = new google.maps.LatLng(lat, lng);
-	     marker.setPosition(myCoords);
-	     map.setCenter(marker.getPosition());
-	 }
+  // Geolocation code
+  if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function (position) {
+          geolat = position.coords.latitude;
+          geolng = position.coords.longitude;
+          myGeoCoords= {lat:position.coords.latitude, lng:position.coords.longitude};
+          map.setZoom(14);
+      });
+  }
 
-	 document.getElementById("geobut").onclick = function(){
-	   map.panTo(new google.maps.LatLng(geolat, geolng));
-	 }
+  // when input values change call refreshMarker
+  document.getElementById('place_latitude').onchange = refreshMarker;
+  document.getElementById('place_longitude').onchange = refreshMarker;
 
-	 document.getElementById("locbut").onclick = function(){
-	   map.panTo(new google.maps.LatLng(lat, lng));
-	 }
-	}
+  // when marker is dragged update input values
+
+  function refreshMarker(){
+      lat = document.getElementById('place_latitude').value;
+      lng = document.getElementById('place_longitude').value;
+      var myCoords = new google.maps.LatLng(lat, lng);
+      marker.setPosition(myCoords);
+      map.setCenter(marker.getPosition());
+  }
+
+  document.getElementById("geobut").onclick = function(){
+    map.panTo(new google.maps.LatLng(geolat, geolng));
+
+    document.getElementById('place_latitude').value = geolat;
+    document.getElementById('place_longitude').value = geolng;
+
+    var newmarker = new google.maps.Marker({
+          position: myGeoCoords,
+          map: map,
+          title: 'Ma géolocalisation',
+          animation: google.maps.Animation.DROP,
+          draggable: true
+      });
+      marker.setMap(null);
+    newmarker.addListener('drag', function() {
+        latlng = newmarker.getPosition();
+        newlat=(Math.round(latlng.lat()*1000000))/1000000;
+        newlng=(Math.round(latlng.lng()*1000000))/1000000;
+        document.getElementById('place_latitude').value = newlat;
+        document.getElementById('place_longitude').value = newlng;
+    });
+
+    // When drag ends, center (pan) the map on the marker position
+    newmarker.addListener('dragend', function() {
+        map.panTo(newmarker.getPosition());
+        console.log(newmarker.getPosition());
+    });
+
+    newmarker.addListener('click', function(){
+      infoWin.setContent(`les uatres te voient là!`)
+      infoWin.open(map, newmarker);
+    });
+
+  }
+
+  document.getElementById("locbut").onclick = function(){
+    map.panTo(new google.maps.LatLng(lat, lng));
+    refreshMarker();
+  }
+}

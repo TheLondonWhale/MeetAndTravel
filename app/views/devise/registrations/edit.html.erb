@@ -33,7 +33,7 @@
 
             </div>
             <div>
-              <h2 class="text-center">Mon profil</h2>
+              <h2 class="text-center ml-3">Mon profil</h2>
             </div>
           </div>
 
@@ -43,8 +43,9 @@
           </div>
           <div class="col-sm-6 d-flex flex-column justify-content-center">
             <p>Indique la position que tu souhaites partager avec les autres voyageurs <em><small>(par défaut nous t'indiquons ta géolocalisation mais elle peut être différente)</small></em></p>
-            <button type="button" name="button" id="geobut" class="btn btn-primary">Ma position actuelle</button>
-            <button type="button" name="button" id="locbut" class="btn btn-primary">Ma position sur le site</button>
+            <div class="d-flex flex-row justify-content-center">
+              <div><button type="button" name="button" id="geobut" class="btn btn-outline-danger top-btn">Me géolocaliser</button></div>
+            </div><br>
             <p><strong><i class="fa fa-warning"></i> Attention, tu dois indiquer ton mot de passe actuel et soumettre le formulaire en bas de page pour enregistrer les changements.</strong></p>
             <%= f.text_field :longitude, class: "form-control", id: "place_longitude", style: "display:none;" %>
             <%= f.text_field :latitude, class: "form-control", id: "place_latitude", style: "display:none;" %>
@@ -127,16 +128,17 @@
             </div>
           </div>
 
-          <div class="actions">
-            <%= f.submit "Editer mon profil", class: "btn-primary" %>
+          <div class="form-group col-sm-12 d-flex justify-content-center">
+            <div class="actions">
+              <%= f.submit "Editer mon profil", class: "btn-primary" %>
+            </div>
           </div>
         <% end %>
+          <div class="form-group col-sm-12 d-flex justify-content-center">
+            <p>Insatisfait ? <%= link_to "Supprimer mon compte", registration_path(resource_name), data: { confirm: "Souhaites-tu vraiment supprimer ton compte Meet&Traval ?" }, method: :delete %></p>
+          </div>
+
         </div>
-        <h5>Supprimer mon compte</h5>
-
-        <p>Insatisfait ? <%= button_to "Supprimer mon compte", registration_path(resource_name), data: { confirm: "Souhaites-tu vraiment supprimer ton compte Meet&Traval ?" }, method: :delete, class: "btn btn-primary" %></p>
-
-        <%= link_to "Retour", :back %>
       </div>
     </div>
   </div>

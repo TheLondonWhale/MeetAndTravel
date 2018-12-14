@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
-  # get 'errors/not_found'
-  # get 'errors/internal_server_error'
+  get 'errors/not_found'
+  get 'errors/internal_server_error'
   devise_for :users, controllers: {
   omniauth_callbacks: 'users/omniauth_callbacks'
   }
@@ -30,8 +30,8 @@ Rails.application.routes.draw do
   end
   resources :searches
 
-  # match "/404", :to => "errors#not_found", :via => :all
-  # match "/500", :to => "errors#internal_server_error", :via => :all
+  match "/404", :to => "errors#not_found", :via => :all
+  match "/500", :to => "errors#internal_server_error", :via => :all
 
   get 'admins/users', to: 'admins#users'
   get 'admins/tips', to: 'admins#tips'
