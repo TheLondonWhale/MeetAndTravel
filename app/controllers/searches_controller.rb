@@ -11,9 +11,11 @@ class SearchesController < ApplicationController
   end
 
   def show
-
+binding.pry
     @search = Search.find(params[:id])
+    binding.pry
     @search = Search.search(@search.keywords, @search.category_id,@search.city,@search.country)
+    binding.pry
     #Permet d'envoyer les paramètres au model search et à les réutilisé dans la méthode self.search
   end
 

@@ -8,7 +8,7 @@ class Search < ApplicationRecord
     table_of_ids_title = []
     table_of_ids_cats = []
     merged_table_of_tips_ids = []
-    results = []
+    @results = []
 
     tips_by_country = Tip.where(["country like?",country]) if country.present?
 
@@ -51,9 +51,9 @@ class Search < ApplicationRecord
 
     merged_table_of_uniq_tips_ids.each do |tip|
        result = Tip.find(tip)
-       results << result
+       @results << result
+       binding.pry
     end
-    return results
-    binding.pry
+    return @results
   end
 end
