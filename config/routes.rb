@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
   omniauth_callbacks: 'users/omniauth_callbacks'
   }
+
+  get 'users/registrations/:id', to: 'registrations#show'
+
   root to: "home#index"
   resources :conversations do
     resources :messages

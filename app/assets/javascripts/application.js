@@ -76,7 +76,7 @@ function initMap(lat, lng) {
     var myCoords = new google.maps.LatLng(lat, lng);
     var mapOptions = {
     center: myCoords,
-    zoom: 14
+    zoom: 8
     };
     var map = new google.maps.Map(document.getElementById('map'), mapOptions);
     var marker = new google.maps.Marker({
@@ -151,12 +151,12 @@ function initializeMap() {
       if (j){
         marker.addListener('click', function(){
           infoWin.setContent(`
-								<div class='follow-img'>
-								<img src="${j.avatar}"/>
-							<h5 class="text-center" style="color:#ff6b6b;">${j.firstname}</h5>
-              <p class="customer-text"><b>Connecté ici le : </b>${usertime}</p>
-              <a class="btn btn-primary justify-content-center" rel="nofollow" data-method="post" href="/conversations?recipient_id=${j.id}&sender_id=${currentuser}">Envoyer un message</a>
-								</div>
+
+							<p><h5 class="text-center" style="color:#ff6b6b;">${j.firstname}</h5></p>
+              <p class="customer-text text-center"><b>Connecté ici le : </b>${usertime}</p>
+							<p class="customer-text text-center"><a href="/users/registrations/${j.id}"><span class="fa fa-eye"></span> <strong>Voir son profil</strong></a></p>
+              <p class="customer-text text-center"><a rel="nofollow" data-method="post" href="/conversations?recipient_id=${j.id}&sender_id=${currentuser}"><span class="fa fa-envelope"></span> <strong>Envoyer un message</strong></a></p>
+
               `)
           infoWin.open(map, marker);
         });

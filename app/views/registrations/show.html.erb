@@ -1,0 +1,59 @@
+<% provide :head_tags do %>
+    <meta name='turbolinks-visit-control' content='reload'>
+    <script>
+    document.addEventListener("DOMContentLoaded", function(){
+        initMap(<%=@user.latitude%>, <%=@user.longitude%>)
+    });
+    </script>
+<% end %>
+<div class="container">
+  <div class="jumbotron">
+    <div class="row">
+        <div class="col-md-4 col-xs-12 col-sm-6 col-lg-4">
+          <% if @user.avatar.attached? %>
+            <%= image_tag @user.avatar, class: "img-fluid rounded-circle mx-auto d-block", style: "height:200px;" %><br/>
+          <% else %>
+          <%= image_tag "avatar.jpg", class: "img-fluid rounded-circle mx-auto d-block", style: "height:200px;" %>
+          <% end %>
+          <% if current_user.id == @user.id %>
+          <% else %>
+            <p class="customer-text text-center">
+            <%= link_to conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: 'post', class: "btn btn-primary" do %>
+            <span class="fa fa-envelope" style="font-size:20px;"></span> Envoyer un message privé
+            <% end %>
+          <% end %>
+          </p>
+          <div id="map"></div>
+        </div>
+        <div class="col-md-8 col-xs-12 col-sm-6 col-lg-8">
+            <h2 style="color:#ff6b6b;">Profil de <%= @user.firstname %></h2>
+          <hr>
+          <ul class="container details">
+            <p><span class="fa fa-user" style="width:50px;"></span><%= @user.username %></p>
+            <p><span class="fa fa-birthday-cake" style="width:50px;"></span><%= @user.age %> ans</p>
+            <p><span class="fa fa-file-text-o" style="width:50px;"></span><%= @user.description %></p><br>
+            <p><strong>Ses bons plans</strong></p>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Titre</th>
+                  <th scope="col">Date de publication</th>
+                  <th scope="col">&nbsp</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <% @tips.each do |tip| %>
+                  <td><%= tip.title %></td>
+                  <td><%= tip.tip_time %></td>
+                  <td><%= link_to tip do %>
+                  <span class="fa fa-eye" style="font-size:20px;"></span>
+                  <% end %></td>
+                </tr><% end %>
+              </tbody>
+            </table>
+          </ul>
+        </div>
+    </div>
+  </div>
+</div>
