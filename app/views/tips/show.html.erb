@@ -17,7 +17,7 @@
       <hr>
       <div class="row d-flex justify-content-between">
         <div class="col-md responsive-wrap">
-          Catégories : 
+          Catégories :
           <% @tip.categories.each do |name| %>
             <% if name == @tip.categories.last %>
               <%= name.name %>
@@ -133,9 +133,13 @@
             <div class="follow-img">
               <% writter = User.find(@tip.creator_id) %>
               <% if writter.avatar.attached? %>
-                <%= image_tag writter.avatar, class: "avatar" %>
+                <a href="/users/registrations/<%= writter.id %>">
+                  <%= image_tag writter.avatar, class: "avatar" %>
+                </a>
               <% else %>
-                <%= image_tag "avatar.jpg", class: "avatar" %>
+                <a href="/users/registrations/<%= writter.id %>">
+                  <%= image_tag "avatar.jpg", class: "avatar" %>
+                </a>
               <% end %>
               <h6><%= writter.firstname %></h6>
               <p class="customer-text"><%= writter.description %></p>
