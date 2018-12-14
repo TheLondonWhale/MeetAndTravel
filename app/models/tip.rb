@@ -3,7 +3,7 @@ class Tip < ApplicationRecord
   has_many :categories, through: :category_to_tips
   accepts_nested_attributes_for :categories, reject_if: proc { |attributes| attributes[:name].blank? }, allow_destroy: true
 
-  has_many :comments
+  has_many :comments, dependent: :destroy
 
   belongs_to :creator, class_name: "User"
 
