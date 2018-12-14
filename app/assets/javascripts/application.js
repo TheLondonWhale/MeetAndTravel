@@ -76,14 +76,13 @@ function initMap(lat, lng) {
     var myCoords = new google.maps.LatLng(lat, lng);
     var mapOptions = {
     center: myCoords,
-    zoom: 14
+    zoom: 8
     };
     var map = new google.maps.Map(document.getElementById('map'), mapOptions);
     var marker = new google.maps.Marker({
         position: myCoords,
         map: map
     });
-    console.log('map');
 }
 
 // carte index
@@ -92,10 +91,10 @@ function initializeMap() {
   var data = $('#map-canvas').data('users');
 	var currentuser = $('#currentuser').data('currentuser');
 	var usertime = $('#usertime').data('usertime');
+	var avatar = $('#avatar').data('avatar');
 
-   console.log(data);
-	 console.log(currentuser);
 	 console.log(usertime);
+	 console.log(avatar);
 
     var myLatLng = {lat: 50.63, lng: 3.06};
 
@@ -129,13 +128,20 @@ function initializeMap() {
       var j = data[i],
           latLng = new google.maps.LatLng(j.latitude, j.longitude);
 					if (j.id == currentuser) {
-            var myposition = new google.maps.Marker({
-              position: latLng,
-              map: map,
-              title: "Ma position",
-              icon: 'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png'
-            });
-					map.panTo(new google.maps.LatLng(j.latitude, j.longitude));}
+						console.log(j.latitude);
+						if (j.latitude !== null && j.longitude !== null) {
+							var myposition = new google.maps.Marker({
+	              position: latLng,
+	              map: map,
+	              title: "Ma position",
+	              icon: 'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png'
+	            });
+							map.panTo(new google.maps.LatLng(j.latitude, j.longitude));
+						}
+						else {
+							map.panTo(new google.maps.LatLng(myLatLng));
+						}
+					}
 						else {
 							addMarker(latLng, j);
 						}
@@ -152,11 +158,12 @@ function initializeMap() {
       if (j){
         marker.addListener('click', function(){
           infoWin.setContent(`
-								<div class='follow-img'>
-							<h5 class="text-center" style="color:#ff6b6b;">${j.firstname}</h5>
-              <p class="customer-text"><b>Connecté ici le : </b>${usertime}</p>
-              <a class="btn btn-primary justify-content-center" rel="nofollow" data-method="post" href="/conversations?recipient_id=${j.id}&sender_id=${currentuser}">Envoyer un message</a>
-								</div>
+
+							<p><h5 class="text-center" style="color:#ff6b6b;">${j.firstname}</h5></p>
+              <p class="customer-text text-center"><b>Connecté ici le : </b>${usertime}</p>
+							<p class="customer-text text-center"><a href="/users/registrations/${j.id}"><span class="fa fa-eye"></span> <strong>Voir son profil</strong></a></p>
+              <p class="customer-text text-center"><a rel="nofollow" data-method="post" href="/conversations?recipient_id=${j.id}&sender_id=${currentuser}"><span class="fa fa-envelope"></span> <strong>Envoyer un message</strong></a></p>
+
               `)
           infoWin.open(map, marker);
         });
@@ -184,7 +191,7 @@ function initMap2(){
 
   var mapOptions = {
   center: myCoords,
-  zoom: 4
+  zoom: 9
   };
 
   var map = new google.maps.Map(document.getElementById('map2'), mapOptions);

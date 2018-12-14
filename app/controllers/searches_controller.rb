@@ -1,4 +1,3 @@
-require 'pry'
 class SearchesController < ApplicationController
 
   def new
@@ -11,15 +10,14 @@ class SearchesController < ApplicationController
   end
 
   def show
-
     @search = Search.find(params[:id])
-    @search = Search.search(@search.keywords, @search.category_id)
+    @search = Search.search(@search.keywords, @search.category_id,@search.city,@search.country)
     #Permet d'envoyer les paramètres au model search et à les réutilisé dans la méthode self.search
   end
 
 private
 
   def search_params
-    params.require(:search).permit(:keywords,:category_id,:id)
+    params.require(:search).permit(:keywords,:category_id,:id,:city,:country)
   end
 end

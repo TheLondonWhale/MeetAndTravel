@@ -12,68 +12,58 @@
               Meet & Travel
             </div>
             <% end %>
-            <% if user_signed_in? %>
-            <div class="collapse navbar-collapse justify-content-end">
-              <ul class="navbar-nav d-flex align-items-center">
-                <li class="nav-link form-inline">
-                  <%= form_for Search.new do |f| %>
 
-                  <%= f.text_field :keywords, placeholder: "Mots-clés...", class: "form-control" %>
-                    <%= f.submit "Rechercher un bon plan", class: "btn btn-outline-danger top-btn" %>
-                  <%end%>
-                </li>
-                <li class="nav-link">
-                  <span><small><%= link_to "Recherche avancée", new_search_path %></small></span>
-                </li>
-              </ul>
-            </div>
-            <% end %>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
-              <ul class="navbar-nav d-flex align-items-center">
+              <ul class="navbar-nav">
+                <% if user_signed_in? %>
+                <li class="nav-link"><%= link_to new_search_path, class: "btn btn-outline-danger top-btn" do %>
+                  <span class="fa fa-search"></span> Rechercher un bon plan
+                  <% end %>
+                </li>
                 <li class="nav-link"><%= link_to new_tip_path, class: "btn btn-outline-danger top-btn" do %>
                   <span class="fa fa-plus"></span> Ajouter un bon plan
                   <% end %>
                 </li>
-                <% if user_signed_in? %>
-                  <li class="nav-item dropdown">
-                    <a class="nav-link" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <% if current_user.avatar.attached? %>
-                        <%= image_tag current_user.avatar, class: "avatar-small" %>
-                      <% else %>
-                        <%= image_tag "avatar.jpg", class: "avatar-small" %>
-                      <% end %>
-                      &nbsp;<span class="fa fa-angle-down"></span></a>
-                    <div class="dropdown-menu">
+                <li class="nav-link"><%= link_to edit_user_registration_path(current_user.id), class: "btn btn-outline-danger top-btn" do %>
+                  <span class="fa fa-map-marker"></span> Modifier ma position géographique
+                  <% end %>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <% if current_user.avatar.attached? %>
+                      <%= image_tag current_user.avatar, class: "avatar-small" %>
+                    <% else %>
+                      <%= image_tag "avatar.jpg", class: "avatar-small" %>
+                    <% end %>
+                    &nbsp;<span class="fa fa-angle-down"></span></a>
+                  <div class="dropdown-menu">
                       <%= link_to edit_user_registration_path, class: "dropdown-item" do %>
                       <span class="fa fa-user" style="font-size:15px;">&nbsp;&nbsp;</span> Mon profil
                       <% end %>
                       <%= link_to destroy_user_session_path, method: :delete, class: "dropdown-item" do %>
                       <span class="fa fa-sign-out" style="font-size:15px;">&nbsp;&nbsp;</span> Se déconnecter
                       <% end %>
-                <% if current_user.admin? %>
+                      <% if current_user.admin? %>
                       <%= link_to admins_users_path, class: "dropdown-item" do %>
                       <span class="fa fa-address-book-o" style="font-size:15px;">&nbsp;&nbsp;</span> Les utilisateurs
                       <% end %>
                       <%= link_to admins_tips_path, class: "dropdown-item" do %>
                       <span class="fa fa-edit" style="font-size:15px;">&nbsp;&nbsp;</span> Les bons plans
                       <% end %>
-                  <% end %>
+                      <% end %>
                     </div>
-                  </li>
-                <% else %>
-                  <li class="nav-link">
-                    <a class="btn btn-outline-danger top-btn" href="" data-toggle="modal" data-target="#exampleModal">
-                      <span class="fa fa-sign-in"></span> &nbsp;SE CONNECTER</a>
-                  </li>
-                <% end %>
+                </li>
                 <li class="nav-item nav-link">
-                  <% if user_signed_in? %>
                   <%= link_to conversations_path, class: "nav-link" do %>
                     <i class="fa fa-envelope-o"></i>&nbsp&nbsp<%= @n %>
                   <% end %>
-                  <% else %>
-                  <% end %>
                 </li>
+                  <% else %>
+                  <li class="nav-link">
+                    <a class="btn btn-outline-danger top-btn" href="" data-toggle="modal" data-target="#exampleModal">
+                    <span class="fa fa-sign-in"></span> &nbsp;SE CONNECTER</a>
+                  </li>
+                  <% end %>
               </ul>
             </div>
           </nav>

@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
   omniauth_callbacks: 'users/omniauth_callbacks'
   }
+
+  get 'users/registrations/:id', to: 'registrations#show'
+
   root to: "home#index"
   resources :conversations do
     resources :messages
@@ -15,6 +18,15 @@ Rails.application.routes.draw do
   end
   resources :tips do
     resources :comments
+  end
+
+  resources :tips do
+    collection do
+      get :recent
+      get :oldest
+      get :upvoted
+      get :downvoted
+    end
   end
   resources :searches
 

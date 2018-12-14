@@ -40,6 +40,16 @@ class TipsController < ApplicationController
     redirect_to tip_path(@tip.id)
   end
 
+  def recent
+   @tip = Tip.recent
+   render action: :index
+  end
+
+  def oldest
+   @tip = Tip.oldest
+   render action: :index
+  end
+
 
   private
 

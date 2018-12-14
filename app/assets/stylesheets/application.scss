@@ -92,6 +92,10 @@
    height: 400px;
  }
 
+ .how-it-works {
+   color: #ff6b6b;
+ }
+
  body {
      font-family: 'Roboto', sans-serif;
  }
@@ -532,7 +536,7 @@
 
              }
              &:hover {
-                 background-color: rgba(245, 239, 239, .6);
+                 background-color: white;
 
                  border-radius: 90%;
                                }
@@ -573,7 +577,8 @@
 
  .titile-block {
      text-align: center;
-     margin: 0 0 40px;
+     margin: 0 0 0px;
+     margin-top: 20px;
      p {
          font-family: 'Roboto', sans-serif;
          font-size: 20px;
