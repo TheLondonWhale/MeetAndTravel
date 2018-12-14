@@ -7,15 +7,3 @@
 <%elsif%>
 <%= render 'resultsearch'%>
 <% end %>
-<div>
-  <%= form_for :item_filter, url: items_path, method: :get do |f| %>
-  	<div class='row with-forms'>
-      <%= f.collection_select(:category_id, Category.all, :id, :category_name, {class:"chosen-select", prompt:'Sélectionnez une catégorie', selected:@filters['category_id']}) %>
-  	</div>
-      <%= f.hidden_field :status, value:'published' %>
-
-  	<%= f.button type: :submit, class:"button fullwidth margin-top-10" do %>
-  	Recherche
-  	<% end %>
-  <% end %>
-</div>

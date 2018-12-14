@@ -43,8 +43,8 @@ ActiveRecord::Schema.define(version: 2018_12_13_171737) do
   end
 
   create_table "category_to_tips", force: :cascade do |t|
-    t.integer "tip_id"
-    t.integer "category_id"
+    t.bigint "tip_id"
+    t.bigint "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_category_to_tips_on_category_id"
@@ -75,13 +75,6 @@ ActiveRecord::Schema.define(version: 2018_12_13_171737) do
     t.datetime "updated_at", null: false
     t.index ["tip_id"], name: "index_likes_on_tip_id"
     t.index ["user_id"], name: "index_likes_on_user_id"
-  end
-
-  create_table "locations", force: :cascade do |t|
-    t.string "longitude"
-    t.string "latitude"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "messages", force: :cascade do |t|
@@ -117,12 +110,10 @@ ActiveRecord::Schema.define(version: 2018_12_13_171737) do
     t.datetime "updated_at", null: false
     t.integer "comments_count", default: 0
     t.bigint "creator_id"
-    t.bigint "category_id"
     t.string "site"
     t.string "street"
     t.string "city"
     t.string "country"
-    t.index ["category_id"], name: "index_tips_on_category_id"
     t.index ["creator_id"], name: "index_tips_on_creator_id"
   end
 
@@ -157,5 +148,4 @@ ActiveRecord::Schema.define(version: 2018_12_13_171737) do
   add_foreign_key "comments", "users"
   add_foreign_key "likes", "tips"
   add_foreign_key "likes", "users"
-  add_foreign_key "tips", "categories"
 end

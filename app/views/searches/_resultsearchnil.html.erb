@@ -1,23 +1,20 @@
-<div class="row">
+<div class="row m-3">
   <% Tip.all.each do |c| %>
     <div class="col-md-4 card-1">
       <div class="card">
-        <div class="card-body">
         <% if c.pictures.attached? %>
           <%= image_tag c.pictures.first, class: "card-img-top"%>
         <% else %>
           <%= image_tag "featured-img2.jpg", class: "card-img-top"%>
         <% end %>
-
+        <div class="card-body">
           <h5 class="card-title"><%= c.title %></h5>
           <ul class="card-rating">
             <li><%= c.likes.count %><i class="fa fa-heart"></i></li>
             <li><i class="fa fa-circle" aria-hidden="true"></i></li>
-            <li><%= c.comments.count %> <%= c.comments.count == 1 || 0 ? 'commentaire' : 'commentaires'%></li>
+            <li><%= c.comments.count %> <%= c.comments.count == 1 || c.comments.count == 0 ? 'commentaire' : 'commentaires'%></li>
             <li><i class="fa fa-circle" aria-hidden="true"></i></li>
-            <li><% for i in 0...c.categories.count %>
-            <p><%= c.categories[i].name%></p>
-            <% end %></li>
+            <li><%= c.categories.first %></li>
           </ul>
           <p class="card-text"><%= c.description.truncate_words(20)%>
             <% if c.description.scan(/\w+/).size > 20 %>

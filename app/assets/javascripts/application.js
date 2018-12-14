@@ -128,13 +128,20 @@ function initializeMap() {
       var j = data[i],
           latLng = new google.maps.LatLng(j.latitude, j.longitude);
 					if (j.id == currentuser) {
-            var myposition = new google.maps.Marker({
-              position: latLng,
-              map: map,
-              title: "Ma position",
-              icon: 'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png'
-            });
-					map.panTo(new google.maps.LatLng(j.latitude, j.longitude));}
+						console.log(j.latitude);
+						if (j.latitude !== null && j.longitude !== null) {
+							var myposition = new google.maps.Marker({
+	              position: latLng,
+	              map: map,
+	              title: "Ma position",
+	              icon: 'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png'
+	            });
+							map.panTo(new google.maps.LatLng(j.latitude, j.longitude));
+						}
+						else {
+							map.panTo(new google.maps.LatLng(myLatLng));
+						}
+					}
 						else {
 							addMarker(latLng, j);
 						}
