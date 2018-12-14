@@ -212,9 +212,9 @@
             <div class="col-md-4 card-1">
                 <div class="card">
                     <% if tip.pictures.attached? %>
-                    <%= image_tag tip.pictures.first, class: "card-img-top"%>
+                    <%= image_tag tip.pictures.first, class: "card-img-top", style: "height:285px;"%>
                     <% else %>
-                    <%= image_tag "featured-img2.jpg", class: "card-img-top"%>
+                    <%= image_tag "featured-img2.jpg", class: "card-img-top", style: "height:285px;"%>
                     <% end %>
                     <div class="card-body">
                         <h5 class="card-title"><%= tip.title %></h5>
@@ -232,7 +232,7 @@
                         </p>
                     </div>
                     <div class="card-bottom d-flex justify-content-between align-items-center">
-                        <p><i class="fa fa-location-arrow"></i>SAN FRANCISCO</p>
+                        <p><i class="fa fa-location-arrow"></i><%= tip.city %></p>
                         <p><%= link_to "Voir ce bon plan", tip_path(tip.id), class: "btn btn-outline-danger top-btn form-control-sm" %></p>
                     </div>
 

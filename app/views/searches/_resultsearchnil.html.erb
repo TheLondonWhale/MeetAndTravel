@@ -3,9 +3,9 @@
     <div class="col-md-4 card-1">
       <div class="card">
         <% if c.pictures.attached? %>
-          <%= image_tag c.pictures.first, class: "card-img-top"%>
+          <%= image_tag c.pictures.first, class: "card-img-top", style: "height:285px;"%>
         <% else %>
-          <%= image_tag "featured-img2.jpg", class: "card-img-top"%>
+          <%= image_tag "featured-img2.jpg", class: "card-img-top", style: "height:285px;"%>
         <% end %>
         <div class="card-body">
           <h5 class="card-title"><%= c.title %></h5>

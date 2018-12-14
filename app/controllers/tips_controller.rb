@@ -33,6 +33,8 @@ class TipsController < ApplicationController
   end
 
   def destroy
+    @tip.destroy
+    redirect_to admins_tips_path
   end
 
   def update
