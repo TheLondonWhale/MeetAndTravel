@@ -20,4 +20,4 @@ Voici l'adresse du site en production : <a href="https://meet-and-travel.herokua
 
 Ce projet a été réalisé par Virginie Valeur Hannebicque, Anaïs Diologeant, Mustapha Ait Ouayhou et Thomas Perus dans le cadre de la session 6 de The Hacking Project à Lille.
 
-![Logo The Hacking Project](https://www.thehackingproject.org/packs/packs/static_pages/assets/images/logo_black-3d6bec995368618a7e9f44536410ae0a.png)
+<img src="https://i2.wp.com/laboate.com/next3/wp-content/uploads/2018/05/hacking-project.png?fit=240%2C239" align="center"/>
