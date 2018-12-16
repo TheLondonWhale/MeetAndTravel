@@ -2,8 +2,7 @@
 <h2 class="text-center">Résultats de la recherche</h2>
 </div>
 
-<<<<<<< HEAD
-<% if @search.nil? %>
+<% if @search == [] %>
 
     <p>Il n'y a pas de bons plans liés à ta recherche</p>
 
@@ -13,13 +12,12 @@
   <% @search.each do |c| %>
     <div class="col-md-4 card-1">
       <div class="card">
-        <div class="card-body">
         <% if c.pictures.attached? %>
           <%= image_tag c.pictures.first, class: "card-img-top"%>
         <% else %>
           <%= image_tag "featured-img2.jpg", class: "card-img-top"%>
         <% end %>
-
+        <div class="card-body">
           <h5 class="card-title"><%= c.title %></h5>
           <ul class="card-rating">
             <li><%= c.likes.count %><i class="fa fa-heart"></i></li>
@@ -27,7 +25,6 @@
             <li><%= c.comments.count %> <%= c.comments.count == 1 || 0 ? 'commentaire' : 'commentaires'%></li>
             <li><i class="fa fa-circle" aria-hidden="true"></i></li>
             <li><% for i in 0...c.categories.count %>
-            <%= c.categories[i].name%>
             <p><%= c.categories[i].name%></p>
             <% end %></li>
           </ul>
@@ -38,17 +35,11 @@
           </p>
         </div>
         <div class="card-bottom d-flex justify-content-between align-items-center">
-            <p><i class="fa fa-location-arrow"></i></p>
+            <p><i class="fa fa-location-arrow"></i>SAN FRANCISCO</p>
             <p><%= link_to "Voir ce bon plan", tip_path(c.id), class: "btn btn-outline-danger top-btn form-control-sm" %></p>
         </div>
       </div>
     </div>
   <% end %>
 </div>
-=======
-<% if @search == [] %>
-<%= render 'resultsearchnil'%>
-<%elsif%>
-<%= render 'resultsearch'%>
->>>>>>> master
-<% end %>
+<%end%>
