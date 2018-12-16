@@ -12,7 +12,7 @@ class SearchesController < ApplicationController
 
   def show
     @search = Search.find(params[:id])
-    @search = Search.search(@search.keywords, @search.category_id,@search.city,@search.country)
+    @search = Search.search(@search.keywords.downcase, @search.category_id,@search.city.downcase,@search.country.downcase)
     #Permet d'envoyer les paramètres au model search et à les réutilisé dans la méthode self.search
   end
 
