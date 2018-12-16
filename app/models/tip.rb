@@ -15,6 +15,18 @@ class Tip < ApplicationRecord
 
   after_validation :geocode, if: ->(obj){ obj.fulladdress.present? }
 
+  scope :country, ->(country) {
+    where("country like?",country) if country.present?
+  }
+
+  scope :city, ->(city) {
+    where("city like?",city) if city.present?
+  }
+
+  scope :keyword, ->(keywords) {
+    tips = tips.where("title LIKE?","%#{keywords}%") if keywords.present?
+  }
+
   def fulladdress
     [country, city, street].compact.join(', ')
   end
