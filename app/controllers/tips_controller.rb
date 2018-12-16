@@ -33,11 +33,23 @@ class TipsController < ApplicationController
   end
 
   def destroy
+    @tip.destroy
+    redirect_to admins_tips_path
   end
 
   def update
     @tip.update(tip_params)
     redirect_to tip_path(@tip.id)
+  end
+
+  def recent
+   @tip = Tip.recent
+   render action: :index
+  end
+
+  def oldest
+   @tip = Tip.oldest
+   render action: :index
   end
 
 

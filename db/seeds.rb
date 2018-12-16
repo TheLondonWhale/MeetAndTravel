@@ -15,17 +15,13 @@ array_cat.each do |list|
 
 end
 
-User.create(firstname: "Mustapha",lastname: "Ait", username: "Mouss", password:"azerty", password_confirmation: "azerty", email: "ait.mus06@gmail.com", longitude: "2.287592", latitude: "48.862725")
-User.create(firstname: "Virginie",lastname: "Valeur", username: "VVH", password:"azerty", password_confirmation: "azerty", email: "virvaleur@hotmail.com", longitude: "2.337644", latitude: "48.860611")
-User.create(firstname: "Anaïs",lastname: "Diologeant", username: "Ana", password:"azerty", password_confirmation: "azerty", email: "anais.diologeant@hotmail.fr", longitude: "2.385683", latitude: "48.835455")
-User.create(firstname: "Thomas",lastname: "Perus", username: "Tom", password:"azerty", password_confirmation: "azerty", email: "thomas.perus@espeme.com", longitude: "2.298088", latitude: "48.855899")
-
-Tip.create(creator_id: "1", title: "Coucou", description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.").categories << [Category.find(1), Category.find(2), Category.find(3)]
-Tip.create(creator_id: "1", title: "Resto Naples", description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ").categories << [Category.find(1),Category.find(3)]
-Tip.create(creator_id: "2", title: "Sortie plongée sous-marine", description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.").categories << Category.find(3)
-
-Like.create(user_id: "1", tip_id: "3")
-Like.create(user_id: "2", tip_id: "2")
-
-Comment.create(content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", user_id: "2", tip_id: "3")
-Comment.create(content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ", user_id: "1", tip_id: "2")
+User.create(firstname: "Mustapha",lastname: "Ait", username: "Mouss", password:"azerty", password_confirmation: "azerty", email: "ait.mus06@gmail.com", longitude: "2.287592", latitude: "48.862725",description: "J’adore découvrir de nouveaux fruits et légumes, je voyage beaucoup pour découvrir de nouveaux produits" , admin: true, birthdate: "1993-04-06")
+User.create(firstname: "Virginie",lastname: "Valeur", username: "VVH", password:"azerty", password_confirmation: "azerty", email: "virvaleur@hotmail.com", longitude: "2.337644", latitude: "48.860611",description: "A la recherche de bons spots autour du monde" , admin: true, birthdate: "1993-04-06")
+User.create(firstname: "Anaïs",lastname: "Diologeant", username: "Ana", password:"azerty", password_confirmation: "azerty", email: "anais.diologeant@hotmail.fr", longitude: "2.385683", latitude: "48.835455", description: "J’aime voyager et je pars faire un road trip de 6 mois en Asie du Sud-Est, si vous connaissez de bons plans là-bas je suis preneuse "  , admin: true, birthdate: "1993-04-06")
+User.create(firstname: "Thomas",lastname: "Perus", username: "Tom", password:"azerty", password_confirmation: "azerty", email: "thomas.perus@espeme.com", longitude: "2.298088", latitude: "48.855899",description: "Hello, j’adore le ski et je compte me faire un petit voyage en Asie, à bientôt" , admin: true, birthdate: "1993-04-06")
+User.create(firstname: "Emilie",lastname: "Mussano", username: "Emi", password:"azerty", password_confirmation: "azerty", email: "emi@emi.fr", longitude: "2.2769", latitude: "48.8637",description: "Grande fan de New-York, je vais y rester quelques mois" , admin: true, birthdate: "1993-04-06")
+User.create(firstname: "Estelle",lastname: "Marignac", username: "Estrella", password:"azerty", password_confirmation: "azerty", email: "estelle@estelle.fr", longitude: "2.338629", latitude: "48.860294",description: "J’adore la thailande et l’italie,je peux vous donner de très bonnes adresses", birthdate: "1993-04-06")
+User.create(firstname: "Anne",lastname: "Boucly", username: "Anne", password:"azerty", password_confirmation: "azerty", email: "anneb@anne.fr", longitude: "2.333333", latitude: "48.866667",description: "J’ai vécu à Lisonne et en martinique, je voyage assez régulièrement pour mon travail , peut-être à bientôt autour d’un verre?", birthdate: "1993-04-06")
+User.create(firstname: "Thomas",lastname: "Grimmonprez", username: "Thomas", password:"azerty", password_confirmation: "azerty", email: "tom@tom.fr", longitude: "2.332400", latitude: "48.884129",description: "Je suis musicien et je voyage pas mal pour donner des concerts, vous êtes les bienvenus", birthdate: "1993-04-06")
+User.create(firstname: "Annabelle",lastname: "Aurejac", username: "Nana", password:"azerty", password_confirmation: "azerty", email: "anna@anna.fr", longitude: "2.35", latitude: "48.853",description: "Je vis au maroc 6 mois de l’année, n’hésitez-pas à me contacter", birthdate: "1993-04-06")
+User.create(firstname: "Marie-Eve",lastname: "Leroy", username: "Marie", password:"azerty", password_confirmation: "azerty", email: "marie@marie.fr", longitude: "2,3695", latitude: "48,8533",description: "J’adore partir en voyage avec mon copain, on va bientôt partir quelques mois en europe", birthdate: "1993-04-06")

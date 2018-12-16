@@ -3,7 +3,7 @@ class Tip < ApplicationRecord
   has_many :categories, through: :category_to_tips
   accepts_nested_attributes_for :categories, reject_if: proc { |attributes| attributes[:name].blank? }, allow_destroy: true
 
-  has_many :comments
+  has_many :comments, dependent: :destroy
 
   belongs_to :creator, class_name: "User"
 
@@ -15,6 +15,7 @@ class Tip < ApplicationRecord
 
   after_validation :geocode, if: ->(obj){ obj.fulladdress.present? }
 
+<<<<<<< HEAD
   scope :country, ->(country) {
     where("country like?",country) if country.present?
   }
@@ -26,6 +27,9 @@ class Tip < ApplicationRecord
   scope :keyword, ->(keywords) {
     tips = tips.where("title LIKE?","%#{keywords}%") if keywords.present?
   }
+=======
+
+>>>>>>> master
 
   def fulladdress
     [country, city, street].compact.join(', ')

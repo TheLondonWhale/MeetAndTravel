@@ -3,7 +3,7 @@ class AdminsController < ApplicationController
   before_action :check_admin
 
   def users
-    @users = User.all
+    @users = User.order('users.admin DESC').all
   end
 
   def tips

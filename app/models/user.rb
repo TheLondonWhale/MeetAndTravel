@@ -42,7 +42,12 @@ class User < ApplicationRecord
   end
 
 def age
-  age = Date.today.year - birthdate.year
+  if birthdate == nil
+    "Non défini"
+  else
+    age = Date.today.year - birthdate.year
+    return "#{age} ans" 
+  end
 end
 
 def user_time
@@ -52,7 +57,7 @@ end
 private
  def self.parse_name(user, name)
    name_arr = name.split(" ")
-   user.last_name = name_arr.pop
-   user.first_name = name_arr.join(" ")
+   user.lastname = name_arr.pop
+   user.firstname = name_arr.join(" ")
  end
 end
