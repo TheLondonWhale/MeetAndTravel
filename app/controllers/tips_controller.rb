@@ -1,4 +1,3 @@
-
 class TipsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_tip, only: [:show, :edit, :update, :destroy]
@@ -12,7 +11,7 @@ class TipsController < ApplicationController
   end
 
   def index
-    @tip = Tip.all
+    @tips = Tip.where(creator_id: current_user)
   end
 
   def create
@@ -34,12 +33,17 @@ class TipsController < ApplicationController
 
   def destroy
     @tip.destroy
-    redirect_to admins_tips_path
+    redirect_to tips_path
   end
 
   def update
-    @tip.update(tip_params)
-    redirect_to tip_path(@tip.id)
+    if current_user.id == @tip.creator_id
+      @tip.update(tip_params)
+      redirect_to tip_path(@tip.id)
+    else
+      flash[:notice] = "Tu ne peux pas éditer ce bon plan"
+      redirect_to root_path
+    end
   end
 
   def recent
@@ -51,7 +55,6 @@ class TipsController < ApplicationController
    @tip = Tip.oldest
    render action: :index
   end
-
 
   private
 

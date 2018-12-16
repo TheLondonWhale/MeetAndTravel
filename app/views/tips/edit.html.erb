@@ -1,0 +1,126 @@
+
+
+    <!--============================= SUBPAGE HEADER BG =============================-->
+
+            <div class="row justify-content-center">
+
+                    <div class="titile-block title-block_subpage login-sec">
+                        <h2>Editer un bon plan</h2>
+                    </div>
+                </div>
+
+    <!--// SUBPAGE HEADER BG -->
+    <!--============================= ADD LISTING =============================-->
+    <section class="main-block">
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="listing-wrap">
+                        <%= form_for(@tip, url: {action: "update", method: :patch}) do |f| %>
+                            <!-- General Information -->
+                            <div class="listing-title">
+                                <span class="ti-files"></span>
+                                <h4>Informations</h4>
+
+                             </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <%= f.label :title, "Nom du bon plan" %>
+                                        <%= f.text_field :title, class: "form-control add-listing_form" %>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <%= f.label :site, "Site/Facebook" %>
+                                        <%= f.text_field :site, class: "form-control add-listing_form" %>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                      <%= f.label :category, "Catégories" %><br>
+                                        <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) do |b| %>
+                                          <%= b.label class: "label-checkbox" do %>
+                                          <%= b.check_box + " " + b.text %>
+                                          <% end %>
+                                        <% end %>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <%= f.label :description, "Description du bon plan" %>
+                                        <%= f.text_area :description, class: "form-control add-listing_form" %>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!--//End General Information -->
+                            <!-- Add Location -->
+                            <div class="listing-title">
+                                <span class="fa fa-location-arrow"></span>
+                                <h4>Ajouter une adresse</h4>
+
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <%= f.label :street, "Rue" %>
+                                        <%= f.text_field :street, class: "form-control add-listing_form" %>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                              <div class="col-md-6">
+                                  <div class="form-group">
+                                    <%= f.label :city, "Ville" %>
+                                    <%= f.text_field :city, class: "form-control add-listing_form" %>
+                                  </div>
+                              </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                      <%= f.label :country, "Pays" %>
+                                      <%= f.text_field :country, class: "form-control add-listing_form" %>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--//End Add Location -->
+                            <!-- Add Gallery -->
+                            <div class="listing-title">
+                                <span class="ti-gallery"></span>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="custom-file">
+                                      <%= f.file_field :pictures, :multiple => true, class: "form-control-file" %>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!--//End Add Gallery -->
+
+                            <!-- Amenities -->
+                            <div class="listing-title">
+                                <span class="ti-gift"></span>
+
+
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <%= f.submit "Modifier le bon plan", class: "btn btn-primary" %>
+                                </div>
+                            </div>
+                            <!--//End Opening Hours -->
+                            <% end %>
+
+                    </div>
+                </div>
+              </div>
+          </div>
+      </section>
