@@ -2,14 +2,18 @@ require 'pry'
 class Search < ApplicationRecord
 
   def self.search(keywords, category_id,city,country)
+    
     ids = if keywords.present? && category_id.present?
             Tip.keywords(keywords).pluck(:id) & Category.category_id(category_id).pluck(:id)
 
-          elsif [keywords, category_id, city, country].any?(&:present?)
+          elsif [keywords.downcase, category_id, city, country].any?(&:present?)
+
             tips = Tip
             tips = tips.country(country)
             tips = tips.city(city)
-            tips = Category.find_by(category_id).tips
+            if category_id.present?
+              tips = Category.find_by(id: category_id).tips
+            end
             tips = tips.keywords(keywords)
             tips.pluck(:id)
           else
