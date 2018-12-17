@@ -132,7 +132,6 @@ function initializeMap() {
 		function addMarker(latLng, j){
 			console.log(j.latitude);;
 			if (j.latitude == null && j.longitude == null) {
-				var marker = new google.maps.Marker({});
 				console.log('zero');
 			} else {
 				var marker = new google.maps.Marker({
