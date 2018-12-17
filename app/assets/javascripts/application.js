@@ -21,9 +21,7 @@
 //= require js/contact
 //= require js/jquery-3.2.1.min
 //= require js/jquery.magnific-popup
-//= require js/popper.min
 //= require js/script
-//= require js/swiper.min
 //= require js/validate
 //= require_tree .
 
@@ -131,12 +129,17 @@ function initializeMap() {
 
     }
 
-    function addMarker(latLng, j){
-      var marker = new google.maps.Marker({
-        position: latLng,
-        map: map,
-        title: j.firstname,
-      });
+		function addMarker(latLng, j){
+			console.log(j.latitude);;
+			if (j.latitude == 0.0 && j.longitude == 0.0) {
+				var marker = new google.maps.Marker({});
+				console.log('zero');
+			} else {
+				var marker = new google.maps.Marker({
+				position: latLng,
+				map: map,
+				title: j.name,
+			});
       if (j){
         marker.addListener('click', function(){
           infoWin.setContent(`
@@ -151,6 +154,7 @@ function initializeMap() {
         });
       }
     }
+	}
 }
 
 function initMap2(){
@@ -265,8 +269,12 @@ function initMap2(){
 
   }
 
-  document.getElementById("locbut").onclick = function(){
-    map.panTo(new google.maps.LatLng(lat, lng));
-    refreshMarker();
+	document.getElementById("ghost").onclick =  function(){
+    lat = undefined;
+    lng = undefined;
+    document.getElementById('place_latitude').value = lat;
+    document.getElementById('place_longitude').value = lng;
+		console.log(lat);
+		alert("Tu es en mode fantôme, indique ton mot de passe pour valider les changements")
   }
 }
