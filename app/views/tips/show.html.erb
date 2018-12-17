@@ -148,11 +148,11 @@
               <h6><%= writter.firstname %></h6>
               <p class="customer-text"><%= writter.description %></p>
               <% if current_user.id == writter.id %>
-                <%= link_to edit_tip_path(@tip), data: { turbolinks: false } do %>
+                <%= link_to edit_tip_path(@tip) do %>
                   <span class="fa fa-pencil"></span> Modifier mon bon plan
                 <% end %>
               <% else %>
-                <%= link_to 'Envoyer un message privé', conversations_path(sender_id: current_user.id, recipient_id: writter.id), data: { turbolinks: false }, method: 'post' %>
+                <%= link_to 'Envoyer un message privé', conversations_path(sender_id: current_user.id, recipient_id: writter.id), method: 'post' %>
               <% end %>
             </div>
           </div>
