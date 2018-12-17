@@ -130,10 +130,6 @@ function initializeMap() {
     }
 
 		function addMarker(latLng, j){
-			console.log(j.latitude);;
-			if (j.latitude == null && j.longitude == null) {
-				console.log('zero');
-			} else {
 				var marker = new google.maps.Marker({
 				position: latLng,
 				map: map,
@@ -142,19 +138,16 @@ function initializeMap() {
       if (j){
         marker.addListener('click', function(){
           infoWin.setContent(`
-
-							<p><h5 class="text-center" style="color:#ff6b6b;">${j.firstname}</h5></p>
-              <p class="customer-text text-center"><b>Connecté ici le : </b>${usertime}</p>
-							<p class="customer-text text-center"><a href="/users/registrations/${j.id}"><span class="fa fa-eye"></span> <strong>Voir son profil</strong></a></p>
-              <p class="customer-text text-center"><a rel="nofollow" data-method="post" href="/conversations?recipient_id=${j.id}&sender_id=${currentuser}"><span class="fa fa-envelope"></span> <strong>Envoyer un message</strong></a></p>
-
-              `)
+						<p><h5 class="text-center" style="color:#ff6b6b;">${j.firstname}</h5></p>
+            <p class="customer-text text-center"><b>Connecté ici le : </b>${usertime}</p>
+						<p class="customer-text text-center"><a href="/users/registrations/${j.id}"><span class="fa fa-eye"></span> <strong>Voir son profil</strong></a></p>
+            <p class="customer-text text-center"><a rel="nofollow" data-method="post" href="/conversations?recipient_id=${j.id}&sender_id=${currentuser}"><span class="fa fa-envelope"></span> <strong>Envoyer un message</strong></a></p>`
+					);
           infoWin.open(map, marker);
         });
       }
     }
 	}
-}
 
 function initMap2(){
   var lat = document.getElementById('place_latitude').value;
@@ -262,18 +255,18 @@ function initMap2(){
     });
 
     newmarker.addListener('click', function(){
-      infoWin.setContent(`les uatres te voient là!`)
+      infoWin.setContent(`C'est la position que les autrs utilisateurs verront!`)
       infoWin.open(map, newmarker);
     });
 
   }
-
-	document.getElementById("ghost").onclick =  function(){
-    lat = undefined;
-    lng = undefined;
-    document.getElementById('place_latitude').value = lat;
-    document.getElementById('place_longitude').value = lng;
-		console.log(lat);
-		alert("Tu es en mode fantôme, indique ton mot de passe pour valider les changements")
-  }
+ // bouton pour le mode fantome
+	// document.getElementById("ghost").onclick =  function(){
+  //   lat = undefined;
+  //   lng = undefined;
+  //   document.getElementById('place_latitude').value = lat;
+  //   document.getElementById('place_longitude').value = lng;
+	// 	console.log(lat);
+	// 	alert("Tu es en mode fantôme, indique ton mot de passe pour valider les changements")
+  // }
 }

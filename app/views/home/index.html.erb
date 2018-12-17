@@ -227,7 +227,7 @@
                         </ul>
                         <p class="card-text"><%= tip.description.truncate_words(25)%>
                           <% if tip.description.scan(/\w+/).size > 25 %>
-                          <em><%= link_to "Lire plus", tip_path(tip.id)%></em>
+                          <em><%= link_to "Lire plus", tip_path(tip.id), data: { turbolinks: false }%></em>
                           <% end %>
                         </p>
                     </div>

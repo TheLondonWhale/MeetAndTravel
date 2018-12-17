@@ -2,7 +2,7 @@ require 'pry'
 class Search < ApplicationRecord
 
   def self.search(keywords, category_id,city,country)
-    
+    binding.pry
     ids = if keywords.present? && category_id.present?
             Tip.keywords(keywords).pluck(:id) & Category.category_id(category_id).pluck(:id)
 
@@ -21,6 +21,6 @@ class Search < ApplicationRecord
           end
 
     Tip.find(ids.uniq)
-
+    binding.pry
   end
 end
